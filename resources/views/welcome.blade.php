@@ -8,7 +8,7 @@
 
     @section('contenido')
         <div class="container-fluid">
-            <a href="/"> pepapepapepapepa</a>
+            <a href="/"> el qe lea es pvto</a>
         </div>
     @endsection
     
