@@ -1,73 +1,40 @@
-<footer class="navbar navbar-expand-lg navbar-dark bgCandy">
-    <div class="container-fluid raw-1">
-        <div>
-            <p>Gracias por visitarnos</p>
-
-            <div class="align-items-bottom">
-                <a href="/" class="btn btn-outline-light border-0 p-0 image-toggle-container">
-                    <!-- Imagen que se ve al inicio -->
-                    <img src="/build/assets/img/facebookW.svg" class="img-front">
-                    <!-- Imagen que se ve al tocar/hover -->
-                    <img src="/build/assets/img/facebookB.svg" class="img-back">
+<footer class="navbar navbar-expand-lg navbar-dark bgCandy d-block p-0">
+        <div class="container-fluid">
+            <div class="align-items-start justify-content-start">
+                <a href="/" class="image-toggle-container">
+                <!-- Imagen que se ve al inicio -->
+                <img src="/img/logosinA.png" class="img-front" width="200px" height="auto">
+                            
+                <!-- Imagen que se ve al tocar/hover -->
+                <img src="/img/logosinB.png" class="img-back" width="200px" height="auto">
                 </a>
 
-                <a href="/" class="btn btn-outline-light border-0 p-0 image-toggle-container">
-                    <!-- Imagen que se ve al inicio -->
-                    <img src="/build/assets/img/wasapW.svg" class="img-front">
-                    <!-- Imagen que se ve al tocar/hover -->
-                    <img src="/build/assets/img/wasapB.svg" class="img-back">
-                </a>
-
-                <a href="/" class="btn btn-outline-light border-0 p-0 image-toggle-container">
-                    <!-- Imagen que se ve al inicio -->
-                    <img src="/build/assets/img/instaW.svg" class="img-front">
-                    <!-- Imagen que se ve al tocar/hover -->
-                    <img src="/build/assets/img/instaB.svg" class="img-back">
-                </a>
-
-                <a href="/" class="btn btn-outline-light border-0 p-0 image-toggle-container">
-                    <!-- Imagen que se ve al inicio -->
-                    <img src="/build/assets/img/xW.svg" class="img-front">
-                    <!-- Imagen que se ve al tocar/hover -->
-                    <img src="/build/assets/img/xB.svg" class="img-back">
-                </a>
-
-                <a href="/" class="btn btn-outline-light border-0 p-0 image-toggle-container">
-                    <!-- Imagen que se ve al inicio -->
-                    <img src="/build/assets/img/phoneW.svg" class="img-front">
-                    <!-- Imagen que se ve al tocar/hover -->
-                    <img src="/build/assets/img/phoneB.svg" class="img-back">
-                </a>
-
-               <a href="/" class="btn btn-outline-light border-0 p-0 image-toggle-container">
-                    <!-- Imagen que se ve al inicio -->
-                    <img src="/build/assets/img/linkeW.svg" class="img-front">
-                    <!-- Imagen que se ve al tocar/hover -->
-                    <img src="/build/assets/img/linkeB.svg" class="img-back">
-                </a>
-                        
-                <div class="align-items-bottom">
-                    <p></p>
-                    <p>Atencion 24/7</p>
-                    <p>Envios a todo el pais</p>
-                </div>
+                <p class="ms-3">Tu seguridad nos importa</p>
             </div>
-        </div>
+            <div class="container d-flex align-items-center justify-content-center ms-5">
+                <div class="col-md-4">
+                    <p>Contactenos</p>
+                    <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Contacto</a>
+                    <div>
+                        <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Consultas</a>
+                    </div>
 
-        <div>
-            <p>MARCAS</p>
-        </div>
+                </div>
 
-        <div>
-            <p>CONTACTOS</p>
-        </div>
+                <div class="col-md-2">
+                    <p>Legales</p>
+                    <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Terminos y condiciones</a>
 
-        <div>
-            <p>LEGALES</p>
+                </div>
+                
+            </div>
+                
+
         </div>
-    </div>
-    <div class="container-fluid align-items-bottom raw-2">
-        <p class="align-items-center">Copyright © 2026 Only Motos S.A. Todos los derechos reservados.</p>
+    <div class="w-100 text-white align-items-center">
+        <div class="container-fluid d-flex justify-content-center border-top border-black border-1">
+            <p class="m-0 py-3">Copyright © 2026 Only Motos S.A. Todos los derechos reservados.</p>
+        </div>
     </div>
 
 </footer>

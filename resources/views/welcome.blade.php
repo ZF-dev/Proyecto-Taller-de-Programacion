@@ -7,7 +7,7 @@
     
 
     @section('contenido')
-    <main class="grow-flex-1 mt-4 mb-4">
+    <main class="grow-flex-1 mb-3">
         <div id="carruselPrincipal" class="carousel slide" data-bs-ride="carousel">
         <!-- Indicadores (los puntitos de abajo) -->
             <div class="carousel-indicators">

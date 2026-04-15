@@ -38,9 +38,8 @@
     <div class="w-100 bg-dark text-white aling-items-center">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="#" class="btn btn-outline-light border-0">Nosotros</a>
-            <a href="#" class="btn btn-outline-light border-0">Catalogos</a>
-            <a href="#" class="btn btn-outline-light border-0">Contactos</a>
-            <a href="#" class="btn btn-outline-light border-0">Legales</a>
+            <a href="#" class="btn btn-outline-light border-0">Productos</a>
+            <a href="#" class="btn btn-outline-light border-0">Comercializacion</a>
         </div>
     </div>
 </header>

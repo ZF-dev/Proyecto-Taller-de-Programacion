@@ -6,6 +6,7 @@
         <title>@yield('title', 'Motochorros" (motos robadas)') </title><!-- esto hace que cada pagina que use este esqueleto pueda poner su propio titulo, y si no lo pone se pone el que esta entre comillas -->
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="/css/styles.css">
+        <link href="https://googleapis.com" rel="stylesheet">
     </head>
 
      <!-- esto hace que el body trate de ocupar el 100% de la pantalla -->
