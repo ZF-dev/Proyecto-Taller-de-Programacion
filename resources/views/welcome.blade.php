@@ -40,6 +40,35 @@
                 <span class="carousel-control-next-icon"></span>
             </button>
         </div>
+
+        <div class="container d-flex align-items-center justify-content-between pt-5 pb-5">
+
+            <div class="card" style="width: 18rem; height: 18rem;">
+                <img src="/img/phoneC.svg" alt="telefono" width="90px" height="60px">
+                <div class="card-body">
+                    <h5 class="card-title">Telefono</h5>
+                    <p class="card-text pt-5">+54 3794 667788</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem; height: 18rem;">
+                <img src="/img/correoC.svg" alt="correo" width="90px" height="60px">
+                <div class="card-body">
+                    <h5 class="card-title">Email</h5>
+                    <p class="card-text pt-5">correoInventado@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem; height: 18rem;">
+                <img src="/img/relojC.svg" alt="horario" width="90px" height="60px">
+                <div class="card-body">
+                    <h5 class="card-title">Horario</h5>
+                    <p class="card-text pt-5">Lunes-Sabado: 15:20h - 23:30h</p>
+                </div>
+            </div>
+
+        </div>
+
     </main>
     @endsection
     
