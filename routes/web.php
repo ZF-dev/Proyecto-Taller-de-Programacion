@@ -13,4 +13,8 @@ Route::get('/IniciarSesion', function () {
 Route::get('/registro', function(){
     return view('registro');
 });
+
+Route::get('/nosotros', function(){
+    return view('nosotros');
+});
 ?>

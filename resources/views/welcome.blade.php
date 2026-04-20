@@ -28,7 +28,7 @@
                 </div>
                 <div class="carousel-item">
                     <img src="/img/Carrucel3PC.png" class="d-none d-md-block w-100" alt="Promoción 3" style="max-height: 480px; object-fit: cover;; background-color: #00aff0;">
-                    <img src="/img/Carrucel3M.png" class="d-block d-md-none w-100" style="height: 600px; object-fit: cover;" alt="Banner Motos Móvil">
+                    <img src="/img/Carrucel3M.png" class="d-block d-md-none w-100" style="height: 600px; object-fit: cover;" alt="Banner">
                 </div>
             </div>
 

@@ -11,8 +11,8 @@
 
                 <p class="ms-3">Tu seguridad nos importa</p>
             </div>
-            <div class="container d-flex align-items-center justify-content-center ms-5">
-                <div class="col-md-4">
+            <div class="container d-flex align-items-center justify-content-evenly ms-5">
+                <div>
                     <p>Contactenos</p>
                     <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Contacto</a>
                     <div>
@@ -21,7 +21,7 @@
 
                 </div>
 
-                <div class="col-md-2">
+                <div>
                     <p>Legales</p>
                     <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Terminos y condiciones</a>
 
