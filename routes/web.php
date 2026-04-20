@@ -6,4 +6,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/IniciarSesion', function () {
+    return view('InicioSesion');
+});
+
+Route::get('/registro', function(){
+    return view('registro');
+});
 ?>

@@ -25,13 +25,14 @@
                 <img src="/img/starB.svg" class="img-back">
             </a>
 
-            <a href="/" class="btn btn-outline-light border-0 image-toggle-container">
+            <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container">
                 <!-- Imagen que se ve al inicio -->
                 <img src="/img/userW.svg" class="img-front">
                         
                 <!-- Imagen que se ve al tocar/hover -->
                 <img src="/img/userB.svg" class="img-back">
             </a>
+
         </div>
     </div>
 
