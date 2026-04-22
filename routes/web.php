@@ -17,4 +17,8 @@ Route::get('/registro', function(){
 Route::get('/nosotros', function(){
     return view('nosotros');
 });
+
+Route::get('/Catalogo',function(){
+    return view('Catalogo');
+});
 ?>
