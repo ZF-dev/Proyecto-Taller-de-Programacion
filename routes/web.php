@@ -14,18 +14,22 @@ Route::get('/registro', function(){
     return view('registro');
 });
 
-Route::get('/Quienes-Somos', function(){
+Route::get('/QuienesSomos', function(){
     return view('QuienesSomos');
 });
 
 Route::get('/Terminos-y-Condiciones', function(){
     return view('TerminosyCondiciones');
 });
-<<<<<<< HEAD
-=======
 
-Route::get('/Catalogo',function(){
+Route::get('/Catalogo', function(){
     return view('Catalogo');
 });
-?>
->>>>>>> fe8295f683632ecd9f322ca2e5f45d7bb7c97090
+
+Route::get('/Comercializacion', function(){
+    return view('Comercializacion');
+});
+
+Route::get('/Contactos', function(){
+    return view('Contactos');
+});

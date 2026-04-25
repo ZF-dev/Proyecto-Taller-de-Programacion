@@ -36,16 +36,23 @@
         </div>
     </div>
 
-    <div class="navbar navbar-expand-lg w-100 bg-dark text-white aling-items-center">
-        <div class="container d-flex justify-content-between align-items-center">
-<<<<<<< HEAD
-            <a href="/QuienesSomos" class="btn btn-outline-light border-0">Quienes Somos</a>
-            <a href="#" class="btn btn-outline-light border-0">Productos</a>
-=======
-            <a href="/nosotros" class="btn btn-outline-light border-0">Nosotros</a>
-            <a href="/Catalogo" class="btn btn-outline-light border-0">Productos</a>
->>>>>>> fe8295f683632ecd9f322ca2e5f45d7bb7c97090
-            <a href="#" class="btn btn-outline-light border-0">Comercializacion</a>
+    <div class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <!-- Botón Hamburguesa (solo se ve en celulares) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenedor de los links -->
+        <div class="collapse navbar-collapse" id="menuNavegacion">
+            <div class="navbar-nav w-100 d-flex justify-content-between align-items-center text-center">
+                <a href="/Quienes-Somos" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Quiénes Somos</a>
+                <a href="/Catalogo" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Catálogo</a>
+                <a href="/Comercializacion" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Comercialización</a>
+                <a href="/Terminos-y-Condiciones" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Términos y Condiciones</a>
+                <a href="/Contactos" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Contactos</a>
+            </div>
         </div>
     </div>
+</div>
 </header>
