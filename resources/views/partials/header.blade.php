@@ -38,8 +38,13 @@
 
     <div class="navbar navbar-expand-lg w-100 bg-dark text-white aling-items-center">
         <div class="container d-flex justify-content-between align-items-center">
+<<<<<<< HEAD
             <a href="/QuienesSomos" class="btn btn-outline-light border-0">Quienes Somos</a>
             <a href="#" class="btn btn-outline-light border-0">Productos</a>
+=======
+            <a href="/nosotros" class="btn btn-outline-light border-0">Nosotros</a>
+            <a href="/Catalogo" class="btn btn-outline-light border-0">Productos</a>
+>>>>>>> fe8295f683632ecd9f322ca2e5f45d7bb7c97090
             <a href="#" class="btn btn-outline-light border-0">Comercializacion</a>
         </div>
     </div>

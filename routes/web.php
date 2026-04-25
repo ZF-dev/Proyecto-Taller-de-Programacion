@@ -21,3 +21,11 @@ Route::get('/Quienes-Somos', function(){
 Route::get('/Terminos-y-Condiciones', function(){
     return view('TerminosyCondiciones');
 });
+<<<<<<< HEAD
+=======
+
+Route::get('/Catalogo',function(){
+    return view('Catalogo');
+});
+?>
+>>>>>>> fe8295f683632ecd9f322ca2e5f45d7bb7c97090
