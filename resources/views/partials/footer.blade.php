@@ -23,7 +23,7 @@
 
                 <div>
                     <p>Legales</p>
-                    <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Terminos y condiciones</a>
+                    <span style="font-size:26px">&bull; </span><a href="/legales" class="nav-link-wrap text-black">Terminos y condiciones</a>
 
                 </div>
                 

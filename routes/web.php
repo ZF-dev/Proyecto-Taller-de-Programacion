@@ -14,7 +14,10 @@ Route::get('/registro', function(){
     return view('registro');
 });
 
-Route::get('/nosotros', function(){
-    return view('nosotros');
+Route::get('/Quienes-Somos', function(){
+    return view('QuienesSomos');
 });
-?>
+
+Route::get('/Terminos-y-Condiciones', function(){
+    return view('TerminosyCondiciones');
+});
