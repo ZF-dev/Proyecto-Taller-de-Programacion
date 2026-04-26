@@ -14,16 +14,16 @@
             <div class="container d-flex align-items-center justify-content-evenly ms-5">
                 <div>
                     <p>Contactenos</p>
-                    <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Contacto</a>
+                    <span style="font-size:26px">&bull; </span><a href="/Contactos" class="nav-link-wrap text-black">Contacto</a>
                     <div>
-                        <span style="font-size:26px">&bull; </span><a href="#" class="nav-link-wrap text-black">Consultas</a>
+                        <span style="font-size:26px">&bull; </span><a href="/Contactos" class="nav-link-wrap text-black">Consultas</a>
                     </div>
 
                 </div>
 
                 <div>
                     <p>Legales</p>
-                    <span style="font-size:26px">&bull; </span><a href="/legales" class="nav-link-wrap text-black">Terminos y condiciones</a>
+                    <span style="font-size:26px">&bull; </span><a href="/Terminos-y-Condiciones" class="nav-link-wrap text-black">Terminos y condiciones</a>
 
                 </div>
                 

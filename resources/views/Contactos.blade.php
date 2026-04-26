@@ -49,7 +49,7 @@
         <div class="col-lg-7">
             <div class="card shadow border-0 p-4 p-md-5">
                 <h3 class="fw-bold mb-4">Envianos tu consulta</h3>
-                <form action="#" method="POST">
+                <form>
                     @csrf {{-- Importante para Laravel --}}
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -79,7 +79,7 @@
                             <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
                         </div>
                         <div class="col-md-12 mt-4">
-                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm">ENVIAR CONSULTA</button>
+                            <button type="button" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm" onclick="window.location.href='/'">ENVIAR CONSULTA</button>
                         </div>
                     </div>
                 </form>
