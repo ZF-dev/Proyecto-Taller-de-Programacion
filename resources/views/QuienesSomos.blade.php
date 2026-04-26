@@ -7,7 +7,7 @@
     <main class="container my-5">
     <!-- Sección: Quiénes Somos -->
     <section class="text-center py-5">
-        <h1 class="display-2 fw-extrabold text-dark">ONLY<span class="text-primary">MOTOS</span></h1>
+        <h1 class="display-2 fw-extrabold text-dark">ONLY<span class="text-primary"> MOTOS</span></h1>
         <p class="lead fs-3 text-muted mx-auto" style="max-width: 800px;">
             Más que una agencia, somos el punto de partida de tu próxima aventura. 
             Pasión por las dos ruedas y compromiso total con tu seguridad.

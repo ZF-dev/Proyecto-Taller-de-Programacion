@@ -17,13 +17,13 @@
                 <img src="/img/shopB.svg" class="img-back">
             </a>
 
-            <a href="/" class="btn btn-outline-light border-0 image-toggle-container">
+            {{-- <a href="/" class="btn btn-outline-light border-0 image-toggle-container">
                 <!-- Imagen que se ve al inicio -->
                 <img src="/img/starW.svg" class="img-front">
                         
                 <!-- Imagen que se ve al tocar/hover -->
                 <img src="/img/starB.svg" class="img-back">
-            </a>
+            </a> favoritos boton no se si es necesario y no me da tiempo a completarlo despues vemos si lo hacemos--}}
 
             <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container">
                 <!-- Imagen que se ve al inicio -->

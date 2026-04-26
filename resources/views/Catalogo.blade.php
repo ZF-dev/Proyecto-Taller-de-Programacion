@@ -8,7 +8,6 @@
     <div class="container mt-5">
         <h1 class="mb-4">Catálogo de Motos</h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Ejemplo de tarjeta de moto -->
             @foreach (config('productos') as $item)
                 <div class="col-md-4">
                     <div class="card h-100">
@@ -17,7 +16,12 @@
                             <h5 class="card-title">{{ $item['nombre']}}</h5>
                             <p class="card-text flex-grow-1">{{ $item['descripcion']}}.</p>
                             <p class="fw-bold">Precio: ${{ number_format($item['precio'],2)}}</p>
-                            <button class="btn btn-dark w-100" onclick="window.location.href='/IniciarSesion'">Comprar</button>
+                            <form method="POST" action="/carrito/agregar" style="display: inline;">
+                                @csrf
+                                <input type="hidden" name="producto_id" value="{{ $item['id'] }}">
+                                <input type="hidden" name="cantidad" value="1">
+                                <button type="submit" class="btn btn-dark w-100">Agregar al carrito</button>
+                            </form>
                         </div>
                     </div>
                 </div>

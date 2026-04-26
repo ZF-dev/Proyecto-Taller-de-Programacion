@@ -37,11 +37,12 @@
   right: 0;
   width: 300px;
   height: calc(100vh - 46px - 26px); /* Altura total menos header y footer aproximado */
-  background: #fff;
+  background: #f1ecec;
   box-shadow: -2px 0 5px rgba(0,0,0,0.3);
   transform: translateX(100%); /* oculta */
   transition: transform 0.3s ease;
-  z-index: 1050; /* Por encima del header y footer */
+  z-index: 1050; /* Por encima del header y footer */  
+  padding: 20px; /* Espacio interno para elementos */
 }
 
 .sidebar.show {
