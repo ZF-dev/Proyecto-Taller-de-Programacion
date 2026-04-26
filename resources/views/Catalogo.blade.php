@@ -12,7 +12,7 @@
             @foreach (config('productos') as $item)
                 <div class="col-md-4">
                     <div class="card h-100">
-                        <img src="{{ asset ($item['imagen']) }}" class="card-img-top" alt="Moto {{ $item['nombre']}}">
+                        <img src="{{ asset($item['imagen']) }}" class="card-img-top" alt="Moto {{ $item['nombre']}}">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ $item['nombre']}}</h5>
                             <p class="card-text flex-grow-1">{{ $item['descripcion']}}.</p>

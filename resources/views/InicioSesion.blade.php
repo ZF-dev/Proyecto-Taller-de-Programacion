@@ -16,20 +16,20 @@
                     <h1 class="card-title text-center">Inicio de Sesion</h1>
 
                     
-                    <form method="POST" action="/">
+                    <form action="{{ url('/IniciarSesion') }}" method="POST">
                         @csrf <!-- Token de seguridad para evitar ataques CSRF -->
                         <div class="mb-3">
-                            <label class="form-label">Usuario/Gmail</label>
-                            <input name="usuario" type="text" class="form-control" placeholder="Ingrese su Usuario">
+                            <label class="form-label">Gmail</label>
+                            <input name="usuario" type="email" class="form-control" placeholder="Ingrese su Gmail" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Contraseña</label>
-                            <input name="contrasena" type="password" class="form-control" placeholder="Ingrese su contraseña">
+                            <input name="contrasena" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
                         </div>
 
-                        <button type="button" class="btn btn-primary w-100"  onclick="window.location.href='/'">Ingresar</button>
-                        <!--button type="submit" class="btn btn-primary w-100">Ingresar</button  para cuando mande los datos para procesar-->
+                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+
                     </form>
 
                     <div class="mt-3 text-center">

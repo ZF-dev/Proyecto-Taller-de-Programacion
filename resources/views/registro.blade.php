@@ -16,42 +16,35 @@
                 <div class="card-body">
                     <h1 class="card-title text-center">Resgistrarse</h1>
 
-                    <!--form method="POST"-->
-                    <form>
+                    <form action="{{ url('/registro') }}" method="POST">
                         @csrf <!-- Token de seguridad para evitar ataques CSRF -->
 
                         <div class="mb-3">
                             <label class="form-label">Nombre Completo</label>
-                            <input name="nombre" type="text" class="form-control" placeholder="Ingrese su Nombre Completo">
+                            <input name="nombre" type="text" class="form-control" placeholder="Ingrese su Nombre Completo" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">DNI</label>
-                            <input name="dni" type="text" class="form-control" placeholder="Ingrese su DNI (sin puntos ni guiones)">
+                            <input name="dni" type="text" class="form-control" placeholder="Ingrese su DNI (sin puntos ni guiones)" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Fecha de Nacimiento</label>
-                            <input name="fecha_nacimiento" type="date" class="form-control">
+                            <input name="fecha_nacimiento" type="date" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Gmail</label>
-                            <input name="mail" type="text" class="form-control" placeholder="micorreo@gmail.com">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Usuario</label>
-                            <input name="usuario" type="text" class="form-control" placeholder="Ingrese su Usuario">
+                            <input name="usuario" type="email" class="form-control" placeholder="micorreo@gmail.com" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Contraseña</label>
-                            <input name="contrasena" type="password" class="form-control" placeholder="Ingrese su contraseña">
+                            <input name="contrasena" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
                         </div>
 
-                        <button type="button" class="btn btn-primary w-100"  onclick="window.location.href='/'">Ingresar</button>
-                        <!--button type="submit" class="btn btn-primary w-100">Ingresar</button para cuando mande los datos para procesar--> 
+                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
 
                     </form>
                     

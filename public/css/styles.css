@@ -30,3 +30,20 @@
 .image-toggle-container:hover .img-back {
     display: block; /* Muestra la negra */
 }
+
+.sidebar {
+  position: fixed;
+  top: 91px; /* Altura aproximada del header para no cubrirlo */
+  right: 0;
+  width: 300px;
+  height: calc(100vh - 46px - 26px); /* Altura total menos header y footer aproximado */
+  background: #fff;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+  transform: translateX(100%); /* oculta */
+  transition: transform 0.3s ease;
+  z-index: 1050; /* Por encima del header y footer */
+}
+
+.sidebar.show {
+  transform: translateX(0); /* visible */
+}

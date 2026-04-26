@@ -9,7 +9,7 @@
         </a>
                 
         <div class="ms-auto d-flex align-items-center">
-            <a href="/" class="btn btn-outline-light border-0 image-toggle-container">
+            <a href="#" class="btn btn-outline-light border-0 image-toggle-container" id="carritoBtn">
                 <!-- Imagen que se ve al inicio -->
                 <img src="/img/shopW.svg" class="img-front">
                         
@@ -28,9 +28,12 @@
             <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container">
                 <!-- Imagen que se ve al inicio -->
                 <img src="/img/userW.svg" class="img-front">
+                <!-- <p class="mb-0 text-dark img-front">variable nombre de usuario</p> -->
                         
                 <!-- Imagen que se ve al tocar/hover -->
                 <img src="/img/userB.svg" class="img-back">
+                <!-- <p class="mb-0 text-dark img-front">variable nombre de usuario</p> -->
+        
             </a>
 
         </div>

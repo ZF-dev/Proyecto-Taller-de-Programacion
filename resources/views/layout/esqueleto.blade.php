@@ -18,8 +18,26 @@
             @yield('contenido')<!-- esto hace que cada pagina que use este esqueleto pueda poner su contenido en esta seccion -->
         </main>
 
+        <!-- Sidebar global, fuera del header -->
+        <div id="sidebarCarrito" class="sidebar">
+            <h2>Tu carrito</h2>
+            <p>Contenido del carrito</p>
+        </div>
+
         @include('partials.footer')<!-- esto incluye el footer en todas las paginas que usen este esqueleto -->
 
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => { // Asegura que el DOM esté cargado antes de ejecutar el script
+                const cartBtn = document.getElementById("carritoBtn");// Botón del carrito en el header
+                const sidebar = document.getElementById("sidebarCarrito");// Sidebar del carrito
+
+                cartBtn.addEventListener("click", () => { // Agrega un evento de clic al botón del carrito
+                    sidebar.classList.toggle("show"); // Alterna la clase "show" para mostrar u ocultar el sidebar
+                });
+            });
+        </script>
+
     </body>
 </html>
