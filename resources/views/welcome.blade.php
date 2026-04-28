@@ -41,29 +41,31 @@
             </button>
         </div>
 
-        <div class="container d-flex align-items-center justify-content-between pt-5 pb-5">
+                <!-- Cambiamos a flex-column en celular y flex-row en PC -->
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 pt-5 pb-5">
 
-            <div class="card" style="width: 16rem; height: 10rem;">
-                <img src="/img/phoneC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="telefono" width="90px" height="60px">
+            <!-- Eliminamos el height fijo y usamos w-100 en celular / ancho fijo en PC -->
+            <div class="card shadow-sm w-100" style="max-width: 18rem;">
+                <img src="/img/phoneC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="telefono" style="width: 60px; height: 60px; object-fit: contain; padding: 10px;">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Telefono</h5>
+                    <h5 class="card-title">Teléfono</h5>
                     <p class="card-text">+54 3794 667788</p>
                 </div>
             </div>
 
-            <div class="card" style="width: 16rem; height: 10rem; ">
-                <img src="/img/correoC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="correo" width="90px" height="60px">
+            <div class="card shadow-sm w-100" style="max-width: 18rem;">
+                <img src="/img/correoC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="correo" style="width: 60px; height: 60px; object-fit: contain; padding: 10px;">
                 <div class="card-body text-center">
                     <h5 class="card-title">Email</h5>
-                    <p class="card-text text-primary">ventas@onlymotos.com.ar</p>
+                    <p class="card-text text-primary text-break">ventas@onlymotos.com.ar</p>
                 </div>
             </div>
 
-            <div class="card" style="width: 16rem; height: 10rem;">
-                <img src="/img/relojC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="horario" width="90px" height="60px">
+            <div class="card shadow-sm w-100" style="max-width: 18rem;">
+                <img src="/img/relojC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="horario" style="width: 60px; height: 60px; object-fit: contain; padding: 10px;">
                 <div class="card-body text-center">
                     <h5 class="card-title">Horario</h5>
-                    <p class="card-text">Lunes-Sabado: 15:20h - 23:30h</p>
+                    <p class="card-text">Lunes-Sábado:<br>15:20h - 23:30h</p>
                 </div>
             </div>
 
