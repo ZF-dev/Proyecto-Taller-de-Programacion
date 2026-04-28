@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@yield('title', 'Motochorros" (motos robadas)') </title><!-- esto hace que cada pagina que use este esqueleto pueda poner su propio titulo, y si no lo pone se pone el que esta entre comillas -->
+        <title>@yield('title', 'Only Motos') </title><!-- esto hace que cada pagina que use este esqueleto pueda poner su propio titulo, y si no lo pone se pone el que esta entre comillas -->
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="/css/styles.css">
         <link href="https://googleapis.com" rel="stylesheet">
