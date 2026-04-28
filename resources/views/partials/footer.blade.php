@@ -24,7 +24,9 @@
                 <div>
                     <p>Legales</p>
                     <span style="font-size:26px">&bull; </span><a href="/Terminos-y-Condiciones" class="nav-link-wrap text-black">Terminos y condiciones</a>
-
+                    <div>
+                        <span style="font-size:26px">&bull; </span><a href="/Comercializacion" class="nav-link-wrap text-black">Comercializacion</a>
+                    </div>
                 </div>
                 
             </div>

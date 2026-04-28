@@ -43,27 +43,27 @@
 
         <div class="container d-flex align-items-center justify-content-between pt-5 pb-5">
 
-            <div class="card" style="width: 18rem; height: 18rem;">
-                <img src="/img/phoneC.svg" alt="telefono" width="90px" height="60px">
-                <div class="card-body">
+            <div class="card" style="width: 16rem; height: 10rem;">
+                <img src="/img/phoneC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="telefono" width="90px" height="60px">
+                <div class="card-body text-center">
                     <h5 class="card-title">Telefono</h5>
-                    <p class="card-text pt-5">+54 3794 667788</p>
+                    <p class="card-text">+54 3794 667788</p>
                 </div>
             </div>
 
-            <div class="card" style="width: 18rem; height: 18rem;">
-                <img src="/img/correoC.svg" alt="correo" width="90px" height="60px">
-                <div class="card-body">
+            <div class="card" style="width: 16rem; height: 10rem; ">
+                <img src="/img/correoC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="correo" width="90px" height="60px">
+                <div class="card-body text-center">
                     <h5 class="card-title">Email</h5>
-                    <p class="card-text pt-5">correoInventado@gmail.com</p>
+                    <p class="card-text text-primary">ventas@onlymotos.com.ar</p>
                 </div>
             </div>
 
-            <div class="card" style="width: 18rem; height: 18rem;">
-                <img src="/img/relojC.svg" alt="horario" width="90px" height="60px">
-                <div class="card-body">
+            <div class="card" style="width: 16rem; height: 10rem;">
+                <img src="/img/relojC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="horario" width="90px" height="60px">
+                <div class="card-body text-center">
                     <h5 class="card-title">Horario</h5>
-                    <p class="card-text pt-5">Lunes-Sabado: 15:20h - 23:30h</p>
+                    <p class="card-text">Lunes-Sabado: 15:20h - 23:30h</p>
                 </div>
             </div>
 

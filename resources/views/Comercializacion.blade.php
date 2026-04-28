@@ -59,16 +59,13 @@
             <h3 class="fw-bold">Opciones de Envío</h3>
             <p class="text-muted small mb-4">Llegamos a todo el país con logística propia y asociada.</p>
             <ul class="list-unstyled text-start">
-                <li class="mb-3">
-                    <span class="badge bg-secondary mb-1">Económico</span>
+                <li>
                     <br><strong>Envío Normal:</strong> Entrega de 5 a 7 días hábiles. Ideal para quienes no tienen prisa y buscan el costo más bajo.
                 </li>
-                <li class="mb-3">
-                    <span class="badge bg-danger mb-1">¡Lo quiero ya!</span>
+                <li>
                     <br><strong>Envío Express:</strong> Entrega prioritaria en 24/48hs (disponible para zonas seleccionadas y CABA/GBA).
                 </li>
-                <li class="mb-3">
-                    <span class="badge bg-dark mb-1">Máxima Seguridad</span>
+                <li>
                     <br><strong>Envío Pro-Box (Larga Distancia):</strong> La moto viaja dentro de una jaula de madera (huacal) sellada, protegida de cualquier golpe o clima.
                 </li>
                 <li>
@@ -106,7 +103,7 @@
     <!-- Botón de Acción -->
     <div class="text-center mt-5">
         <a href="/Catalogo" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow">VER CATÁLOGO DISPONIBLE</a>
-        <p class="mt-3 text-muted">¿Tenés dudas específicas? <a href="#" class="text-decoration-none">Contactate con un asesor</a></p>
+        <p class="mt-3 text-muted">¿Tenés dudas específicas? <a href="/Contactos" class="text-decoration-none">Contactate con un asesor</a></p>
     </div>
 </main>
 
