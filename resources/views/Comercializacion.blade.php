@@ -26,7 +26,7 @@
                         <li class="mb-2">💳 <strong>Tarjetas de Crédito:</strong> Planes Ahora 12 y Ahora 18 (sujeto a disponibilidad).</li>
                         <li class="mb-2">🏦 <strong>Créditos Prendarios:</strong> Financiación bancaria solo con DNI y aprobación inmediata.</li>
                         <li class="mb-2">🔄 <strong>Permutas:</strong> Tomamos tu moto usada como parte de pago (sujeto a peritaje).</li>
-                    </ul>
+                    </ul> 
                 </div>
             </div>
         </div>

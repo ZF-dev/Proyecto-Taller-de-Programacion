@@ -79,7 +79,7 @@
                             <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
                         </div>
                         <div class="col-md-12 mt-4">
-                            <button type="button" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm" onclick="window.location.href='/'">ENVIAR CONSULTA</button>
+                            <button type="button" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm" onclick="window.location.href='/exito-consulta'">ENVIAR CONSULTA</button>
                         </div>
                     </div>
                 </form>

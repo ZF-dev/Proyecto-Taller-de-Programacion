@@ -42,6 +42,10 @@ Route::get('/Contactos', function(){
     return view('Contactos');
 });
 
+Route::get('/exito-consulta', function(){
+    return view('exitoConsulta');
+});
+
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar']);
 
 Route::get('/carrito',
