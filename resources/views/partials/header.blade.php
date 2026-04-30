@@ -23,12 +23,13 @@
                         
                 <!-- Imagen que se ve al tocar/hover -->
                 <img src="/img/starB.svg" class="img-back">
-            </a> favoritos boton no se si es necesario y no me da tiempo a completarlo despues vemos si lo hacemos--}}
+            </a> favoritos boton no se si es necesario y  vemos si lo hacemos--}}
+
+            {{-- <p class="mb-0 text-dark img-front">variable nombre de usuario</p>  --}}
 
             <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container">
                 <!-- Imagen que se ve al inicio -->
                 <img src="/img/userW.svg" class="img-front">
-                <!-- <p class="mb-0 text-dark img-front">variable nombre de usuario</p> -->
                         
                 <!-- Imagen que se ve al tocar/hover -->
                 <img src="/img/userB.svg" class="img-back">

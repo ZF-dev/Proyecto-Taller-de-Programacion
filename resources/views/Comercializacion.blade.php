@@ -77,7 +77,7 @@
 </div>
     </div>
 
-    <!-- Sección de Información Útil / FAQ -->
+    <!-- Sección de Información Útil-->
     <section class="mt-5 p-4 bg-light rounded-4">
         <h2 class="text-center fw-bold mb-4">Información Útil para el Comprador</h2>
         <div class="row">
