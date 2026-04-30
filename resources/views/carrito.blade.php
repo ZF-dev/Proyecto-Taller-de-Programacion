@@ -13,7 +13,7 @@
         @if(session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
-        @if(session('carrito') && count(session('carrito')) > 0) // Verifica si el carrito existe y tiene productos
+        @if(session('carrito') && count(session('carrito')) > 0)
             <div class="row">
                 @foreach(session('carrito') as $item)
                     <div class="col-md-12 mb-3">
