@@ -15,21 +15,33 @@
                 <h5 class="fw-bold mb-3">Información Institucional</h5>
                 <ul class="list-unstyled mb-0">
                     <li class="mb-3">
+                        <i class="bi bi-person-badge text-primary me-2"></i>
                         <strong>Titular:</strong> Joaquín "Joako" G. & Federico "Fede" R.
                     </li>
                     <li class="mb-3">
+                        <i class="bi bi-building text-primary me-2"></i>
                         <strong>Razón Social:</strong> Only Motos S.R.L.
                     </li>
                     <li class="mb-3">
+                        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
                         <strong>Domicilio Legal:</strong> Av. Libertad 1234, Ciudad de Corrientes, Argentina.
                     </li>
                     <li class="mb-3">
+                        <i class="bi bi-telephone-fill text-primary me-2"></i>
                         <strong>Teléfonos:</strong> +54 (379) 412-3456 / 478-9012
                     </li>
                     <li>
+                        <i class="bi bi-envelope-fill text-primary me-2"></i>
                         <strong>Email:</strong> ventas@onlymotos.com.ar
                     </li>
                 </ul>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="d-flex gap-3 justify-content-start ps-2">
+                <a href="#" class="btn btn-outline-primary rounded-circle"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="btn btn-outline-primary rounded-circle"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="btn btn-outline-primary rounded-circle"><i class="bi bi-whatsapp"></i></a>
             </div>
         </div>
 
