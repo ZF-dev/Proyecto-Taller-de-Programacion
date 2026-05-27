@@ -3,7 +3,7 @@
 
     @extends('layout.esqueleto')
     
-    @section('title', 'E-commerce "Motochorros" (motos robadas)')
+    @section('title', 'E-commerce "Only Motos"')
     
 
     @section('contenido')

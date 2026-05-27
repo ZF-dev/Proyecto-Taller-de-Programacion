@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ControladorRegistroEInicio; // Agregar esta línea para importar el controlador(ya no lo detecta automatico a partir de laravel 8 en adelante)
-                                            //Importante aunque app esta en minuscula ,para laravel es obligatorio que el namespace y la carpeta tengan la primera letra en mayuscula, de lo contrario no lo detecta
+use App\Http\Controllers\ControladorRegistroEInicio;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\ControladorPago;
 use Illuminate\Support\Facades\Route;
@@ -15,12 +17,6 @@ Route::get('/IniciarSesion', function () {
 });
 
 Route::post('/IniciarSesion', [ControladorRegistroEInicio::class, 'iniciarSesion']);
-
-Route::get('/registro', function(){
-    return view('registro');
-});
-
-Route::post('/registro', [ControladorRegistroEInicio::class, 'registroCompletado']);
 
 Route::get('/Quienes-Somos', function(){
     return view('QuienesSomos');
@@ -63,3 +59,46 @@ Route::post('/finalizarCompra', [ControladorPago::class, 'DatosPagoCompletado'])
 Route::get('/confirmarPago', function(){
     return view('confirmarPago');
 });
+
+
+Route::middleware('guest')->group(function () {
+
+    Route::controller(LoginController::class)->name('login.')->group(function () {
+        Route::get('/IniciarSesion', 'mostrarLogin')->name('mostrar');
+        Route::post('/IniciarSesion', 'conectar')->name('conectar');
+    });
+
+    Route::controller(RegisterController::class)->name('register.')->group(function () {
+        Route::get('/registro', 'mostrarRegistro')->name('mostrar');
+        Route::post('/registro', 'registrar')->name('crear');
+    });
+});
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::post('/logout', [LoginController::class, 'salir'])->name('logout');
+
+    Route::middleware(['verified'])->group(function () {
+    
+    });
+
+
+    Route::middleware(['admin'])->group(function () {
+    
+        Route::controller(UserController::class)->name('usuarios.')->group(function () {
+            Route::get('/usuarios', 'index')->name('index');
+            Route::patch('/usuarios/{id}/rol', 'cambiarRol')->name('rol');
+            Route::delete('/usuarios/{id}', 'destroy')->name('destroy');
+        });
+
+    });
+
+
+
+});
+
+
+
+
+
