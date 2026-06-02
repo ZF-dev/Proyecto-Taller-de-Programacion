@@ -80,9 +80,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [LoginController::class, 'salir'])->name('logout');
 
     Route::middleware(['verified'])->group(function () {
-    
-    });
 
+    });
 
     Route::middleware(['admin'])->group(function () {
     
@@ -93,9 +92,6 @@ Route::middleware(['auth'])->group(function () {
         });
 
     });
-
-
-
 });
 
 

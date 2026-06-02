@@ -27,15 +27,32 @@
 
             {{-- <p class="mb-0 text-dark img-front">variable nombre de usuario</p>  --}}
 
-            <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container">
-                <!-- Imagen que se ve al inicio -->
-                <img src="/img/userW.svg" class="img-front">
-                        
-                <!-- Imagen que se ve al tocar/hover -->
-                <img src="/img/userB.svg" class="img-back">
-                <!-- <p class="mb-0 text-dark img-front">variable nombre de usuario</p> -->
-        
-            </a>
+            @auth
+
+                <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
+                    <span class="nombre-usuario text-black mb-0">{{ auth()->user()->name }}</span>
+                    <div class="position-relative" style="width: 24px; height: 24px;">
+                        <!-- Imagen que se ve al inicio -->
+                        <img src="/img/userW.svg" class="img-front">   
+                        <!-- Imagen que se ve al tocar/hover -->
+                        <img src="/img/userB.svg" class="img-back">
+                    </div>
+                </a>
+
+            @else
+
+                <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
+                    <span class="nombre-usuario text-black mb-0">Ingresar</span>
+                    <div class="position-relative" style="width: 24px; height: 24px;">
+                        <!-- Imagen que se ve al inicio -->
+                        <img src="/img/userW.svg" class="img-front">   
+                        <!-- Imagen que se ve al tocar/hover -->
+                        <img src="/img/userB.svg" class="img-back">
+                    </div>
+                </a>
+
+
+            @endauth
 
         </div>
     </div>

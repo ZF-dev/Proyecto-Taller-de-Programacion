@@ -15,28 +15,31 @@ class RegisterController extends Controller
     }
 
     public function registrar(Request $request)
-    {
-        $datosValidados = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users', 
-            'password' => 'required|string|min:6',   
-            'DNI'      => 'required|long|unique:users',
-            'fecha_nacimiento' => 'required|date'
-        ]);
+{
+    // 1. Sincronizamos las reglas con los 'name' exactos de tu formulario HTML
+    $datosValidados = $request->validate([
+        'name'             => 'required|string|max:255',
+        'email'            => 'required|string|email|max:255|unique:users,email',
+        'password'         => 'required|string|min:6',
+        'dni'              => 'required|numeric|digits_between:7,8|unique:users,DNI', 
+        'fecha_nacimiento' => 'required|date',
+    ]);
 
-        $usuario = User::create([
-            'name'     => $datosValidados['name'],
-            'email'    => $datosValidados['email'],
-            'password' => bcrypt($datosValidados['password']), 
-            'DNI'      => $datosValidados['DNI'],
-            'fecha_nacimiento' => $datosValidados['fecha_nacimiento']
-        ]);
+    // 2. Mapeamos los datos validados hacia las columnas reales de tu base de datos
+    $usuario = User::create([
+        'name'             => $datosValidados['name'],
+        'email'            => $datosValidados['email'],
+        'password'         => bcrypt($datosValidados['password']), 
+        'dni'              => $datosValidados['dni'],
+        'fecha_nacimiento' => $datosValidados['fecha_nacimiento']
+    ]);
 
-        event(new Registered($usuario)); 
+    event(new Registered($usuario)); 
 
-        auth()->login($usuario);
+    auth()->login($usuario);
 
-        return redirect()->to('/')->with('exito', '¡Cuenta creada con éxito! Bienvenido.');
-    }
+    return redirect()->to('/')->with('exito', '¡Cuenta creada con éxito! Bienvenido.');
+}
+
 
 }
