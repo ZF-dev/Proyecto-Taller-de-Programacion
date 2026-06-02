@@ -16,12 +16,12 @@
                 <div class="card-body">
                     <h1 class="card-title text-center">Resgistrarse</h1>
 
-                    <form action="{{ url('/registro') }}" method="POST">
-                        @csrf <!-- Token de seguridad para evitar ataques CSRF -->
+                    <form action="{{ route('register.crear') }}" method="POST">
+                        @csrf 
 
                         <div class="mb-3">
                             <label class="form-label">Nombre Completo</label>
-                            <input name="nombre" type="text" class="form-control" placeholder="Ingrese su Nombre Completo" required>
+                            <input name="name" type="text" class="form-control" placeholder="Ingrese su Nombre Completo" required>
                         </div>
 
                         <div class="mb-3">
@@ -35,16 +35,16 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Gmail</label>
-                            <input name="usuario" type="email" class="form-control" placeholder="micorreo@gmail.com" required>
+                            <label class="form-label">Email</label>
+                            <input name="email" type="email" class="form-control" placeholder="micorreo@email.com" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Contraseña</label>
-                            <input name="contrasena" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
+                            <input name="password" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
 
                     </form>
                     

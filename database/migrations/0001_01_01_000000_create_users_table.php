@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default('user');
-            $table->long('DNI')->unique();
+            $table->integer('DNI')->unique();
             $table->date('fecha_nacimiento');
             $table->rememberToken();
             $table->timestamps();

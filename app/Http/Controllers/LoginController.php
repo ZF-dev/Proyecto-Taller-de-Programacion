@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function mostrarLogin()
     {
-        return view('login');
+        return view('InicioSesion');
     }
 
     public function conectar(Request $request)
