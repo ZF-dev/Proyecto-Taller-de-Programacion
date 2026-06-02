@@ -12,16 +12,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Attributes\Casts;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['name', 'email', 'password', 'role', 'DNI', 'fecha_nacimiento'])]
+#[Fillable(['name', 'email', 'password', 'role', 'DNI', 'fecha_nacimiento'])] //laravel ahora se tiene que definir los campos que se pueden llenar masivamente, sino no se pueden crear usuarios
 #[Hidden(['password', 'remember_token'])]
 #[Casts(['email_verified_at' => 'datetime', 'password' => 'hashed', 'fecha_nacimiento' => 'date', 'DNI' => 'long'])]
 class User extends Authenticatable
 {
     use SoftDeletes;
     use HasFactory, Notifiable;
-    
-     * @return array<string, string>
-     */
     
     protected $table = 'users';
 
