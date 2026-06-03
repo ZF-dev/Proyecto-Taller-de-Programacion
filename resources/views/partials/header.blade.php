@@ -9,13 +9,15 @@
         </a>
                 
         <div class="ms-auto d-flex align-items-center">
-            <a href="#" class="btn btn-outline-light border-0 image-toggle-container" id="carritoBtn">
-                <!-- Imagen que se ve al inicio -->
-                <img src="/img/shopW.svg" class="img-front">
-                        
-                <!-- Imagen que se ve al tocar/hover -->
-                <img src="/img/shopB.svg" class="img-back">
-            </a>
+            @auth
+                <a href="#" class="btn btn-outline-light border-0 image-toggle-container" id="carritoBtn">
+                    <!-- Imagen que se ve al inicio -->
+                    <img src="/img/shopW.svg" class="img-front">
+                            
+                    <!-- Imagen que se ve al tocar/hover -->
+                    <img src="/img/shopB.svg" class="img-back">
+                </a>
+            @endauth
 
             {{-- <a href="/" class="btn btn-outline-light border-0 image-toggle-container">
                 <!-- Imagen que se ve al inicio -->

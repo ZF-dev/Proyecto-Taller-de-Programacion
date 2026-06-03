@@ -6,17 +6,12 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\ControladorPago;
+use App\Http\Controllers\CatalogoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/IniciarSesion', function () {
-    return view('InicioSesion');
-});
-
-Route::post('/IniciarSesion', [ControladorRegistroEInicio::class, 'iniciarSesion']);
 
 Route::get('/Quienes-Somos', function(){
     return view('QuienesSomos');
@@ -26,9 +21,7 @@ Route::get('/Terminos-y-Condiciones', function(){
     return view('TerminosyCondiciones');
 });
 
-Route::get('/Catalogo', function(){
-    return view('Catalogo');
-});
+Route::get('/Catalogo', [CatalogoController::class, 'mostrar']);
 
 Route::get('/Comercializacion', function(){
     return view('Comercializacion');
@@ -41,14 +34,6 @@ Route::get('/Contactos', function(){
 Route::get('/exito-consulta', function(){
     return view('exitoConsulta');
 });
-
-Route::post('/carrito/agregar', [CarritoController::class, 'agregar']);
-
-Route::get('/carrito',
-    [CarritoController::class, 'mostrar'
-]);
-
-Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar']);
 
 Route::get('/finalizarCompra', function(){
     return view('finalizarCompra');
@@ -68,6 +53,8 @@ Route::middleware('guest')->group(function () {
         Route::post('/IniciarSesion', 'conectar')->name('conectar');
     });
 
+    Route::get('/IniciarSesion', [LoginController::class, 'mostrarLogin'])->name('login');
+
     Route::controller(RegisterController::class)->name('register.')->group(function () {
         Route::get('/registro', 'mostrarRegistro')->name('mostrar');
         Route::post('/registro', 'registrar')->name('crear');
@@ -78,6 +65,11 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::post('/logout', [LoginController::class, 'salir'])->name('logout');
+
+    // Rutas del carrito protegidas con autenticación
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar']);
+    Route::get('/carrito', [CarritoController::class, 'mostrar']);
+    Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar']);
 
     Route::middleware(['verified'])->group(function () {
 

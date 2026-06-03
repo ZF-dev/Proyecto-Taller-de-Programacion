@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\motos;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -16,9 +17,8 @@ class CarritoController extends Controller
         $productoId = $request->producto_id;
         $cantidad = $request->cantidad;
 
-        // Obtener productos desde config
-        $productos = config('productos');
-        $producto = collect($productos)->firstWhere('id', $productoId);
+        // Obtener producto desde la base de datos del proyecto
+        $producto = motos::find($productoId);
         if (!$producto) {
             return redirect()->back()->with('error', 'Producto no encontrado.');
         }
@@ -32,9 +32,9 @@ class CarritoController extends Controller
         } else {
             $carrito[$productoId] = [
                 'id' => $productoId,
-                'nombre' => $producto['nombre'],
-                'precio' => $producto['precio'],
-                'imagen' => $producto['imagen'],
+                'nombre' => $producto->nombre,
+                'precio' => $producto->precio,
+                'imagen' => $producto->imagen,
                 'cantidad' => $cantidad,
             ];
         }
