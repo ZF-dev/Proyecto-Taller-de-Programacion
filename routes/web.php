@@ -53,7 +53,12 @@ Route::middleware('guest')->group(function () {
         Route::post('/IniciarSesion', 'conectar')->name('conectar');
     });
 
-    Route::get('/IniciarSesion', [LoginController::class, 'mostrarLogin'])->name('login');
+    Route::get('/IniciarSesion', [LoginController::class, 'mostrarLogin'])->name('login'); 
+    //esto es hardcodeo, en el middleware de autenticacion queria usar la ruta login.mostrar 
+    // pero saltaba error de que laravel buscaba la ruta login a secas 
+    // y bueno esto es lo que encontre para solucionarlo, no se si es correcto pero funciona 
+    // directamente le di el nombre login al mostrarLogin y asi el middleware de autenticacion 
+    // redirige a esa ruta cuando el usuario no esta autenticado
 
     Route::controller(RegisterController::class)->name('register.')->group(function () {
         Route::get('/registro', 'mostrarRegistro')->name('mostrar');
@@ -66,7 +71,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/logout', [LoginController::class, 'salir'])->name('logout');
 
-    // Rutas del carrito protegidas con autenticación
     Route::post('/carrito/agregar', [CarritoController::class, 'agregar']);
     Route::get('/carrito', [CarritoController::class, 'mostrar']);
     Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar']);
