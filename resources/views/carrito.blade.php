@@ -13,22 +13,22 @@
         @if(session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
-        @if(session('carrito') && count(session('carrito')) > 0)
+        @if($carrito && count($carrito) > 0)
             <div class="row">
-                @foreach(session('carrito') as $item)
+                @foreach($carrito as $item)
                     <div class="col-md-12 mb-3">
                         <div class="card">
                             <div class="card-body d-flex align-items-center">
-                                <img src="{{ asset($item['imagen']) }}" width="100" height="100" alt="{{ $item['nombre'] }}" class="me-3">
+                                <img src="{{ asset($item->moto->imagen) }}" width="100" height="100" alt="{{ $item->moto->nombre }}" class="me-3">
                                 <div class="flex-grow-1">
-                                    <h5>{{ $item['nombre'] }}</h5>
-                                    <p>Precio: ${{ number_format($item['precio'], 2) }}</p>
-                                    <p>Cantidad: {{ $item['cantidad'] }}</p>
-                                    <p>Subtotal: ${{ number_format($item['precio'] * $item['cantidad'], 2) }}</p>
+                                    <h5>{{ $item->moto->nombre }}</h5>
+                                    <p>Precio: ${{ number_format($item->precio, 2) }}</p>
+                                    <p>Cantidad: {{ $item->cantidad }}</p>
+                                    <p>Subtotal: ${{ number_format($item->precio * $item->cantidad, 2) }}</p>
                                 </div>
                                 <form method="POST" action="/carrito/eliminar">
                                     @csrf
-                                    <input type="hidden" name="producto_id" value="{{ $item['id'] }}">
+                                    <input type="hidden" name="producto_id" value="{{ $item->moto_id }}">
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                 </form>
                             </div>
@@ -37,7 +37,7 @@
                 @endforeach
             </div>
             <hr>
-            <h3>Total: ${{ number_format(collect(session('carrito'))->sum(function($item) { return $item['precio'] * $item['cantidad']; }), 2) }}</h3>
+            <h3>Total: ${{ number_format($total, 2) }}</h3>
             <a href="/Catalogo" class="btn btn-secondary">Continuar comprando</a>
             <a href="/finalizarCompra" class="btn btn-success">Proceder al pago</a>
         @else

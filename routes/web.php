@@ -39,11 +39,9 @@ Route::get('/finalizarCompra', function(){
     return view('finalizarCompra');
 });
 
-Route::post('/finalizarCompra', [ControladorPago::class, 'DatosPagoCompletado']);
+Route::post('/finalizarCompra', [ControladorPago::class, 'registrarVenta'])->name('finalizarCompra');
 
-Route::get('/confirmarPago', function(){
-    return view('confirmarPago');
-});
+Route::get('/confirmarPago', [ControladorPago::class, 'DatosPagoCompletado'])->name('ventaConfirmada');
 
 
 Route::middleware('guest')->group(function () {

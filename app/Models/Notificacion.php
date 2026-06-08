@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Prunables;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Casts;
 
-[Fillable(['mensaje', 'color', 'leido'])]
+#[Fillable(['mensaje', 'color', 'leido'])]
 #[Casts(['leido' => 'boolean'])]
 
 class Notificacion extends Model

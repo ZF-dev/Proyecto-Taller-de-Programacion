@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\motos;
+use App\Models\CarritoItem;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -17,50 +18,53 @@ class CarritoController extends Controller
         $productoId = $request->producto_id;
         $cantidad = $request->cantidad;
 
-        // Obtener producto desde la base de datos del proyecto
         $producto = motos::find($productoId);
         if (!$producto) {
             return redirect()->back()->with('error', 'Producto no encontrado.');
         }
 
-        // Obtener carrito de la sesión
-        $carrito = session('carrito', []);
+        $userId = auth()->id();
 
-        // Agregar o actualizar cantidad
-        if (isset($carrito[$productoId])) {
-            $carrito[$productoId]['cantidad'] += $cantidad;
+        $item = CarritoItem::where('user_id', $userId)
+                           ->where('moto_id', $productoId)
+                           ->first();
+
+        if ($item) {
+            $item->update(['cantidad' => $item->cantidad + $cantidad]);
         } else {
-            $carrito[$productoId] = [
-                'id' => $productoId,
-                'nombre' => $producto->nombre,
-                'precio' => $producto->precio,
-                'imagen' => $producto->imagen,
+            CarritoItem::create([
+                'user_id' => $userId,
+                'moto_id' => $productoId,
                 'cantidad' => $cantidad,
-            ];
+                'precio' => $producto->precio,
+            ]);
         }
-
-        // Guardar en sesión
-        session(['carrito' => $carrito]);
 
         return redirect()->back()->with('success', 'Producto agregado al carrito.');
     }
 
     public function mostrar()
     {
-        $carrito = session('carrito', []);
-        $total = 0;
-        foreach ($carrito as $item) {
-            $total += $item['precio'] * $item['cantidad'];
-        }
-        return view('carrito', compact('carrito', 'total'));
+        $userId = auth()->id();
+        $items = CarritoItem::where('user_id', $userId)
+                            ->with('moto')
+                            ->get();
+                            
+        $total = $items->sum(fn ($item) => $item->precio * $item->cantidad);
+
+        return view('carrito', ['carrito' => $items, 'total' => $total]);
     }
 
     public function eliminar(Request $request)
     {
         $request->validate(['producto_id' => 'required|integer']);
-        $carrito = session('carrito', []);
-        unset($carrito[$request->producto_id]);
-        session(['carrito' => $carrito]);
+
+        $userId = auth()->id();
+
+        CarritoItem::where('user_id', $userId)
+                   ->where('moto_id', $request->producto_id)
+                   ->delete();
+
         return redirect()->back()->with('success', 'Producto eliminado del carrito.');
     }
 }

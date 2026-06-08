@@ -21,20 +21,20 @@
         <!-- Sidebar global, fuera del header -->
         <div id="sidebarCarrito" class="sidebar">
             <h2><img src="/img/carritoIcono.png" alt="Carrito" width="24" height="24" style="vertical-align: middle;"> <b>Carrito</b></h2>
-            @if(session('carrito') && count(session('carrito')) > 0)
-                @foreach(session('carrito') as $item)
+            @if($carritoSidebar && count($carritoSidebar) > 0)
+                @foreach($carritoSidebar as $item)
                     <div class="carrito-item">
-                        <img src="{{ asset($item['imagen']) }}" width="50" height="50" alt="{{ $item['nombre'] }}">
-                        <p>{{ $item['nombre'] }} - ${{ number_format($item['precio'], 2) }} x {{ $item['cantidad'] }}</p>
+                        <img src="{{ asset($item->moto->imagen) }}" width="50" height="50" alt="{{ $item->moto->nombre }}">
+                        <p>{{ $item->moto->nombre }} - ${{ number_format($item->precio, 2) }} x {{ $item->cantidad }}</p>
                         <form method="POST" action="/carrito/eliminar" style="display: inline;">
                             @csrf
-                            <input type="hidden" name="producto_id" value="{{ $item['id'] }}">
+                            <input type="hidden" name="producto_id" value="{{ $item->moto_id }}">
                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                         </form>
                     </div>
                 @endforeach
                 <hr>
-                <p><strong>Total: ${{ number_format(collect(session('carrito'))->sum(function($item) { return $item['precio'] * $item['cantidad']; }), 2) }}</strong></p>
+                <p><strong>Total: ${{ number_format($totalCarrito, 2) }}</strong></p>
                 <a href="/carrito" class="btn btn-primary">Ver carrito completo</a>
             @else
                 <p>El carrito está vacío.</p>

@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Contraseña</label>
+                            <label class="form-label">Contraseña (6 o mas digitos)</label>
                             <input name="password" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
                         </div>
 
