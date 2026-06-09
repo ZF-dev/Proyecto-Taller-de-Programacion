@@ -51,6 +51,10 @@ Route::middleware('guest')->group(function () {
         Route::post('/IniciarSesion', 'conectar')->name('conectar');
     });
 
+    Route::get('/mapa', function(){
+        return view('Mapa');
+    });
+
     Route::get('/IniciarSesion', [LoginController::class, 'mostrarLogin'])->name('login'); 
     //esto es hardcodeo, en el middleware de autenticacion queria usar la ruta login.mostrar 
     // pero saltaba error de que laravel buscaba la ruta login a secas 

@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand-lg bgCandy sticky-top d-block p-0">
      <div class="container-fluid d-flex align-items-center py-2">
-        <a href="/" class="btn btn-outline-light border-0 image-toggle-container">
+        <a href="/" class="btn btn-outline-light border-0 shadow-sm image-toggle-container">
             <!-- Imagen que se ve al inicio -->
             <img src="/img/logosinA.png" class="img-front" width="115px" height="auto">
                         
@@ -10,7 +10,7 @@
                 
         <div class="ms-auto d-flex align-items-center">
             @auth
-                <a href="#" class="btn btn-outline-light border-0 image-toggle-container" id="carritoBtn">
+                <a href="#" class="btn btn-outline-light border-0 shadow-sm image-toggle-container" id="carritoBtn">
                     <!-- Imagen que se ve al inicio -->
                     <img src="/img/shopW.svg" class="img-front">
                             
@@ -19,7 +19,7 @@
                 </a>
             @endauth
 
-            {{-- <a href="/" class="btn btn-outline-light border-0 image-toggle-container">
+            {{-- <a href="/" class="btn btn-outline-light border-0 shadow-sm image-toggle-container">
                 <!-- Imagen que se ve al inicio -->
                 <img src="/img/starW.svg" class="img-front">
                         
@@ -31,7 +31,7 @@
 
             @auth
 
-                <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
+                <a href="/IniciarSesion" class="btn btn-outline-light border-0 shadow-sm image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
                     <span class="nombre-usuario text-black mb-0">{{ auth()->user()->name }}</span>
                     <div class="position-relative" style="width: 24px; height: 24px;">
                         <!-- Imagen que se ve al inicio -->
@@ -43,7 +43,7 @@
 
             @else
 
-                <a href="/IniciarSesion" class="btn btn-outline-light border-0 image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
+                <a href="/IniciarSesion" class="btn btn-outline-light border-0 shadow-sm image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
                     <span class="nombre-usuario text-black mb-0">Ingresar</span>
                     <div class="position-relative" style="width: 24px; height: 24px;">
                         <!-- Imagen que se ve al inicio -->

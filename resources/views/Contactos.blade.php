@@ -18,13 +18,13 @@
                         <strong>Titular:</strong> Joaquín "Joako" G. & Federico "Fede" R.
                     </li>
                     <li class="mb-3">
-                        <strong>Razón Social:</strong> Only Motos S.R.L.
+                        <strong>Razón Social:</strong> Only Motos S. A.
                     </li>
                     <li class="mb-3">
-                        <strong>Domicilio Legal:</strong> Av. Libertad 1234, Ciudad de Corrientes, Argentina.
+                        <strong>Domicilio Legal:</strong> Atalco 5848, CABA, Argentina.
                     </li>
                     <li class="mb-3">
-                        <strong>Teléfonos:</strong> +54 (379) 412-3456 / 478-9012
+                        <strong>Teléfonos:</strong> +54 (379) 465-6359 / 478-9012
                     </li>
                     <li>
                         <strong>Email:</strong> ventas@onlymotos.com.ar
