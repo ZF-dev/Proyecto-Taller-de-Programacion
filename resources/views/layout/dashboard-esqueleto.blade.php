@@ -20,9 +20,9 @@
 
         /* Forzamos el degradado radial en Header y Footer anulando interferencias */
         .dashboard-header, .dashboard-footer {
-            background: var(--admin-gradient) !important;
+            background: var(--admin-gradient) ;
             border-bottom: 2px solid rgba(145, 1, 255, 0.2);
-            color: #ffffff !important;
+            color: #ffffff ;
         }
 
         .dashboard-footer {
@@ -32,13 +32,13 @@
 
         /* Estilo para los links del menú administrativo */
         .nav-admin-link {
-            color: rgba(255, 255, 255, 0.75) !important;
+            color: rgb(0, 0, 0);
             font-weight: 500;
             transition: all 0.2s ease-in-out;
             border-radius: 4px;
         }
         .nav-admin-link:hover, .nav-admin-link.active {
-            color: #ffffff !important;
+            color: #ffffff ;
             background: rgba(145, 1, 255, 0.3);
             text-shadow: 0 0 8px rgba(145, 1, 255, 0.6);
         }
