@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand-lg bgCandy sticky-top d-block p-0">
     <div class="container-fluid d-flex align-items-center py-2">
-        <a href="/" class="btn btn-outline-light border-0 shadow-sm image-toggle-container">
+        <a href="{{ route('welcome') }}" class="btn btn-outline-light border-0 shadow-sm image-toggle-container">
             <img src="/img/logosinA.png" class="img-front" width="115px" height="auto">
             <img src="/img/logosinB.png" class="img-back" width="115px" height="auto">
         </a>
@@ -67,11 +67,11 @@
         <!-- Contenedor de los links -->
         <div class="collapse navbar-collapse" id="menuNavegacion">
             <div class="navbar-nav w-100 d-flex justify-content-between align-items-center text-center">
-                <a href="/Quienes-Somos" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Quiénes Somos</a>
-                <a href="/Catalogo" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Catálogo</a>
-                <a href="/Comercializacion" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Comercialización</a>
-                <a href="/Terminos-y-Condiciones" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Términos y Condiciones</a>
-                <a href="/Contactos" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Contactos</a>
+                <a href="{{ route('quienes.somos') }}" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Quiénes Somos</a>
+                <a href="{{ route('catalogo.index') }}" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Catálogo</a>
+                <a href="{{ route('comercializacion') }}" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Comercialización</a>
+                <a href="{{ route('terminos.condiciones') }}" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Términos y Condiciones</a>
+                <a href="{{ route('contactos') }}" class="nav-link btn btn-outline-danger border-0 px-3 text-white">Contactos</a>
             </div>
         </div>
     </div>

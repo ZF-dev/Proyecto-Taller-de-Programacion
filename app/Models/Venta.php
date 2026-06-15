@@ -34,16 +34,16 @@ class Venta extends Model
                 'accion'         => 'Cierre de Venta Comercial',
                 'tabla_afectada' => 'ventas',
                 'ip_address'     => request()->ip(),
-                'detalles'       => [
+                'detalles'       => json_encode([
                     'venta_id'    => $venta->id,
                     'total'       => $venta->total,
                     'metodo_pago' => $venta->metodo_pago,
                     'comprador'   => $venta->titular_pago ?? 'Cliente General'
-                ]
+                ])
             ]);
 
             \App\Models\Notificacion::create([
-                'mensaje'  => "💰 ¡Venta Online Procesada! Cobro de ${$venta->total} mediante " . strtoupper($venta->metodo_pago),
+                'mensaje'  =>  "💰 ¡Venta Online Procesada! Cobro de $" . number_format($venta->total, 2, ',', '.') . " mediante " . strtoupper($venta->metodo_pago),
                 'color'    => 'success', // Verde
                 'leido'    => false,
                 'consulta' => null

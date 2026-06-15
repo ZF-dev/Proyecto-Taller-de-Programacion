@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('venta_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
-            $table->foreignId('venta_id')->constrained('ventas')->onDelete('cascade');
+            $table->foreignId('venta_id')->nullable()->constrained('ventas')->onDelete('cascade');
             $table->foreignId('moto_id')->nullable()->constrained('motos')->onDelete('set null');
             
             $table->string('moto_modelo_historico'); 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carrito_items');
+        Schema::dropIfExists('venta_items');
     }
 };

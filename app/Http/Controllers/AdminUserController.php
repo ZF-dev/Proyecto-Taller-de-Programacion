@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Venta;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -66,6 +67,34 @@ class AdminUserController extends Controller
         $usuario->delete();
 
         return redirect()->back()->with('success', 'Cuenta desvinculada del sistema de forma permanente.');
+    }
+
+    public function mostrarPerfil()
+    {
+        $usuario = auth()->user();
+
+        $compras = Venta::where('user_id', $usuario->id)
+            ->with('items')
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('mostrarPerfil', compact('usuario', 'compras'));
+    }
+
+    public function actualizarPerfil(Request $request)
+    {
+        $usuario = User::findOrFail(auth()->id());
+
+        $request->validate([
+            'name'             => 'sometimes|required|string|max:255',
+            'dni'              => 'sometimes|required|numeric|digits_between:7,9',
+            'fecha_nacimiento' => 'sometimes|required|date',
+            'email'            => 'sometimes|required|email|unique:users,email,' . $usuario->id,
+        ]);
+
+        $usuario->update($request->only(['name', 'dni', 'fecha_nacimiento', 'email']));
+
+        return redirect()->route('verPerfil')->with('success', 'Perfil actualizado con éxito.');
     }
 }
 

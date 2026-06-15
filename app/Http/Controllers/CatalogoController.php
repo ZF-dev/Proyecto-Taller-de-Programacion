@@ -2,33 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\motos;
-use App\Models\marcas;
 use Illuminate\Http\Request;
+use App\Models\Moto;
+use App\Models\Marca;
 
 class CatalogoController extends Controller
 {
-    public function mostrar(Request $request)
+    public function index(Request $request)
     {
-        // Obtener todas las marcas para el filtro
-        $marcas = marcas::all();
-        $marcaSeleccionada = $request->input('marca', '');
-        
-        // Iniciar query de motos activas
-        $query = motos::where('activo', true);
-        
-        // Filtrar por marca si se proporciona
-        if (!empty($marcaSeleccionada)) {
-            $query->where('marca_id', intval($marcaSeleccionada));
+        $marcas = Marca::orderBy('nombre')->get();
+
+        $marcaSeleccionada = $request->query('marca');
+
+        $query = Moto::where('activo', true)->with('marca');
+
+        if ($marcaSeleccionada) {
+            $query->where('marca_id', $marcaSeleccionada);
         }
-        
-        // Paginar resultados (9 por página para mantener el grid 3x3)
-        $motos = $query->paginate(9);
-        
-        return view('Catalogo', [
-            'motos' => $motos,
-            'marcas' => $marcas,
-            'marcaSeleccionada' => $marcaSeleccionada,
-        ]);
+
+        $motos = $query->orderBy('nombre')->paginate(9);
+
+        return view('catalogo', compact('motos', 'marcas', 'marcaSeleccionada'));
     }
 }
+

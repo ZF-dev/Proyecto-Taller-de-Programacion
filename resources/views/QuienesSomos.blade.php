@@ -104,7 +104,7 @@
             <!-- Empleado 2: Lucas -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card border-0 shadow-sm h-100 text-center pb-3">
-                    <img src="/img/lucas.png" class="card-img-top rounded-circle mx-auto mt-4 shadow-sm" alt="Mecánico" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #dee2e6;">
+                    <img src="/img/sofia.png" class="card-img-top rounded-circle mx-auto mt-4 shadow-sm" alt="Mecánico" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #dee2e6;">
                     <div class="card-body">
                         <h5 class="fw-bold mb-1">Lucas Herrera</h5>
                         <p class="text-primary small fw-bold mb-2">Técnico de Service</p>
@@ -116,7 +116,7 @@
             <!-- Empleada 3: Valentina -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card border-0 shadow-sm h-100 text-center pb-3">
-                    <img src="/img/valentina.png" class="card-img-top rounded-circle mx-auto mt-4 shadow-sm" alt="Gestoría" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #dee2e6;">
+                    <img src="/img/sofia.png" class="card-img-top rounded-circle mx-auto mt-4 shadow-sm" alt="Gestoría" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #dee2e6;">
                     <div class="card-body">
                         <h5 class="fw-bold mb-1">Valentina Ruiz</h5>
                         <p class="text-primary small fw-bold mb-2">Gestión & Trámites</p>

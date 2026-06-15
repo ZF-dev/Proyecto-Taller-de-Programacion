@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarritoController;
-use App\Http\Controllers\ControladorPago;
+use App\Http\Controllers\VentaController;
 use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminMotoController;
@@ -14,20 +13,19 @@ use App\Http\Controllers\AuditoriaController;
 use App\Http\Controllers\AdminVentaController;
 use Illuminate\Support\Facades\Route;
 
-    Route::get('/mapa', function(){return view('Mapa');});
-    Route::get('/Catalogo', [CatalogoController::class, 'mostrar']);
-    Route::get('/Comercializacion', function(){return view('Comercializacion');});
-    Route::get('/Contactos', function(){return view('Contactos');});
-    Route::get('/exito-consulta', function(){return view('exitoConsulta');});
-    Route::get('/', function () {return view('welcome');});
-    Route::get('/Quienes-Somos', function(){return view('QuienesSomos');});
-    Route::get('/Terminos-y-Condiciones', function(){return view('TerminosyCondiciones');});
+    Route::get('/mapa', function(){return view('Mapa');})->name('mapa');
+    Route::get('/Catalogo', [CatalogoController::class, 'index'])->name('catalogo.index');
+    Route::get('/Comercializacion', function(){return view('Comercializacion');})->name('comercializacion');
+    Route::get('/Contactos', function(){return view('Contactos');})->name('contactos');
+    Route::get('/exito-consulta', function(){return view('exitoConsulta');})->name('exito.consulta');
+    Route::get('/', function () {return view('welcome');})->name('welcome');
+    Route::get('/Quienes-Somos', function(){return view('QuienesSomos');})->name('quienes.somos');
+    Route::get('/Terminos-y-Condiciones', function(){return view('TerminosyCondiciones');})->name('terminos.condiciones');
     Route::post('/enviar-consulta', [NotificacionController::class, 'enviarConsulta'])->name('consultas.enviar');
 
 Route::middleware('guest')->group(function () {
 
     Route::controller(LoginController::class)->name('login.')->group(function () {
-        Route::get('/IniciarSesion', 'mostrarLogin')->name('mostrar');
         Route::post('/IniciarSesion', 'conectar')->name('conectar');
     });
     Route::get('/IniciarSesion', [LoginController::class, 'mostrarLogin'])->name('login'); 
@@ -45,21 +43,24 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::post('/logout', [LoginController::class, 'salir'])->name('logout');
-    Route::get('/mostrarPerfil', [UserController::class, 'mostrarPerfil'])->name('verPerfil');
+    Route::get('/mostrarPerfil', [AdminUserController::class, 'mostrarPerfil'])->name('verPerfil');
+    Route::patch('/perfil/actualizar', [AdminUserController::class, 'actualizarPerfil'])->name('perfil.actualizar');
 
-    Route::post('/carrito/agregar', [CarritoController::class, 'agregar']);
-    Route::get('/carrito', [CarritoController::class, 'mostrar']);
-    Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar']);
 
-    //Route::get('/finalizarCompra', function(){return view('finalizarCompra');});
-    Route::post('/finalizarCompra', [ControladorPago::class, 'registrarVenta'])->name('finalizarCompra');
-    Route::get('/confirmarPago', [ControladorPago::class, 'DatosPagoCompletado'])->name('ventaConfirmada');
+    Route::get('/carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+Route::patch('/carrito/modificar-cantidad', [CarritoController::class, 'modificarCantidad'])->name('carrito.modificar');
+
+
+    Route::get('/finalizarCompra', function(){return view('finalizarCompra');})->name('finalizarCompra.vista');
+    Route::post('/finalizarCompra', [VentaController::class, 'registrarVenta'])->name('finalizarCompra.procesar');
 
 
 
     Route::middleware(['admin'])->group(function () {
     
-        Route::controller(UserController::class)->name('usuarios.')->group(function () {
+        Route::controller(AdminUserController::class)->name('usuarios.')->group(function () {
             Route::get('/usuarios', 'index')->name('index');
             Route::patch('/usuarios/{id}/rol', 'cambiarRol')->name('rol');
             Route::delete('/usuarios/{id}', 'destroy')->name('destroy');

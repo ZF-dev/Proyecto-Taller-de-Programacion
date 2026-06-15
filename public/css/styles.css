@@ -17,34 +17,33 @@
 }
 
 
-/* Ocultamos la segunda imagen por defecto */
 .img-back {
     display: none;
 }
 
-/* Al pasar el mouse por el contenedor: */
 .image-toggle-container:hover .img-front {
-    display: none; /* Esconde la blanca */
+    display: none; 
 }
 
 .image-toggle-container:hover .img-back {
-    display: block; /* Muestra la negra */
+    display: block;
 }
 
 .sidebar {
   position: fixed;
-  top: 91px; /* Altura aproximada del header para no cubrirlo */
-  right: 0;
+  top: 91px;
+  right: -300px;
   width: 300px;
-  height: calc(100vh - 46px - 26px); /* Altura total menos header y footer aproximado */
-  background: #f1ecec;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.3);
-  transform: translateX(100%); /* oculta */
-  transition: transform 0.3s ease;
-  z-index: 1050; /* Por encima del header y footer */  
-  padding: 20px; /* Espacio interno para elementos */
+  height: calc(100vh - 91px); 
+  background: #ffffff; 
+  box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+  transition: right 0.3s ease-in-out; 
+  z-index: 1050; 
+  padding: 20px; 
+  overflow-y: auto; 
 }
 
+
 .sidebar.show {
-  transform: translateX(0); /* visible */
+  right: 0; 
 }

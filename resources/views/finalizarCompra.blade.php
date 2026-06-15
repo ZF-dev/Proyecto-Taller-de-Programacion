@@ -6,18 +6,32 @@
 <div class="container mt-5 mb-5">
     <h1 class="mb-4">Finalizar Compra</h1>
 
+    <!-- 🟢 Mensaje de Éxito Comercial -->
+    @if(session('success'))
+        <div class="alert alert-success border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
+            🎉 <strong>¡Éxito!</strong> {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- 🔴 Mensaje de Error de Operación o de Stock -->
+    @if(session('error'))
+        <div class="alert alert-danger border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
+            ⚠️ <strong>Error en Operación:</strong> {{ session('error') }}
+        </div>
+    @endif
+
+    <!-- Lista de fallas de validación de inputs de Laravel -->
     @if($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
+        <div class="alert alert-danger py-2 px-3 small border-0 mb-4" style="border-radius: 6px;">
+            <ul class="mb-0 ps-3">
+                @foreach($errors->all() as $error) <li>{{ $error }}</li> @endforeach
             </ul>
         </div>
     @endif
 
+
     <!-- UNIFICADO: Un solo formulario envuelve todo para que viajen tanto el envío como el pago -->
-    <form action="{{ url('/finalizarCompra') }}" method="POST">
+    <form action="{{ route('finalizarCompra.procesar') }}" method="POST">
         @csrf
         
         <div class="row">

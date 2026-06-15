@@ -5,7 +5,7 @@
         <div class="d-flex flex-column align-items-center align-items-lg-start mb-4 mb-lg-0">
             
             <!-- Logo principal -->
-            <a href="/" class="shadow-sm image-toggle-container mb-3">
+            <a href="{{ route('welcome') }}" class="shadow-sm image-toggle-container mb-3">
                 <img src="/img/logosinA.png" class="img-front" width="200" alt="Logo Only Motos">
                 <img src="/img/logosinB.png" class="img-back" width="200" alt="Logo Only Motos">
             </a>
@@ -30,7 +30,7 @@
                 </a>
 
                 <!-- Ubicación: Abre tu mapa en la misma pestaña del proyecto -->
-                <a href="{{ url('/mapa') }}" class="image-toggle-container">
+                <a href="{{ route('mapa') }}" class="image-toggle-container">
                     <img src="/img/locationB.svg" class="img-front" width="40" alt="Ubicación">
                     <img src="/img/locationW.svg" class="img-back" width="40" alt="Ubicación">
                 </a>
@@ -47,16 +47,16 @@
             <div>
                 <p class="fw-bold mb-1">Contáctenos</p>
                 <ul class="list-unstyled">
-                    <li><a href="/Contactos" class="text-black text-decoration-none">• Contacto</a></li>
-                    <li><a href="/Contactos" class="text-black text-decoration-none">• Consultas</a></li>
+                    <li><a href="{{ route('contactos') }}" class="text-black text-decoration-none">• Contacto</a></li>
+                    <li><a href="{{ route('contactos') }}" class="text-black text-decoration-none">• Consultas</a></li>
                 </ul>
             </div>
 
             <div>
                 <p class="fw-bold mb-1">Legales</p>
                 <ul class="list-unstyled">
-                    <li><a href="/Terminos-y-Condiciones" class="text-black text-decoration-none">• Términos</a></li>
-                    <li><a href="/Comercializacion" class="text-black text-decoration-none">• Comercialización</a></li>
+                    <li><a href="{{ route('terminos.condiciones') }}" class="text-black text-decoration-none">• Términos</a></li>
+                    <li><a href="{{ route('comercializacion') }}" class="text-black text-decoration-none">• Comercialización</a></li>
                 </ul>
             </div>
         </div>

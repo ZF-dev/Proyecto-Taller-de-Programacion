@@ -66,7 +66,11 @@
                         <small class="text-uppercase font-weight-bold"> Moto estrella </small>
                         @if($motoEstrella)
                             <h4 class="my-2">{{ $motoEstrella->nombre }}</h4>
-                            <small>Quedan solo <strong>{{ $motoEstrella->stock }} unidades</strong> en stock.</small>
+                            <div class="mt-2">
+                                <span class="badge bg-success px-3 py-2 fs-6 shadow-sm">
+                                    {{ $motoEstrella->total_vendido }} {{ $motoEstrella->total_vendido == 1 ? 'unidad vendida' : 'unidades vendidas' }}
+                                </span>
+                            </div>
                         @else
                             <h4 class="my-2">Sin Datos</h4>
                             <small>No hay vehículos registrados.</small>

@@ -36,12 +36,12 @@ class NotificacionController extends Controller
             'mensaje'  => "Nueva consulta de contacto recibida de: {$request->nombre}",
             'color'    => 'info', // Determina el color de la alerta visual (Bootstrap: info, warning, success)
             'leido'    => false,
-            'consulta' => [
+            'consulta' => json_encode([
                 'nombre'   => $request->nombre,
                 'email'    => $request->email,
                 'telefono' => $request->telefono ?? 'No especificado',
                 'texto'    => $request->mensaje
-            ]
+            ])
         ]);
 
         return redirect()->back()->with('success', '¡Tu consulta fue enviada con éxito! Nos comunicaremos a la brevedad.');

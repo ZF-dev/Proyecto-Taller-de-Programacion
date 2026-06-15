@@ -39,9 +39,31 @@
                             <p class="mb-0 text-muted">
                                 ${{ number_format($item->precio_unitario, 2, ',', '.') }} x {{ $item->cantidad }}
                             </p>
+                            <div class="d-flex align-items-center gap-2 mt-1">
+                                <!-- Botón Menos (-) -->
+                                <form method="POST" action="{{ route('carrito.modificar') }}" class="m-0">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="producto_id" value="{{ $item->moto_id }}">
+                                    <input type="hidden" name="accion" value="restar">
+                                    <button type="submit" class="btn btn-xs btn-outline-secondary py-0 px-2 fw-bold" style="font-size: 0.75rem;">-</button>
+                                </form>
+
+                                <span class="fw-bold px-1 text-dark" style="font-size: 0.85rem;">{{ $item->cantidad }}</span>
+
+                                <!-- Botón Más (+) -->
+                                <form method="POST" action="{{ route('carrito.modificar') }}" class="m-0">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="producto_id" value="{{ $item->moto_id }}">
+                                    <input type="hidden" name="accion" value="sumar">
+                                    <button type="submit" class="btn btn-xs btn-outline-dark py-0 px-2 fw-bold" style="font-size: 0.75rem;">+</button>
+                                </form>
+                            </div>
                         </div>
-                        <form method="POST" action="/carrito/eliminar" class="ms-2">
+                        <form method="POST" action="{{ route('carrito.eliminar') }}" class="ms-2">
                             @csrf
+                            @method('DELETE')
                             <input type="hidden" name="producto_id" value="{{ $item->moto_id }}">
                             <button type="submit" class="btn btn-sm btn-outline-danger border-0">✕</button>
                         </form>
@@ -54,8 +76,8 @@
                     <span>Total:</span>
                     <span class="text-success">${{ number_format($totalCarrito, 2, ',', '.') }}</span>
                 </h5>
-                <a href="/carrito" class="btn btn-primary w-100 mb-2">Ver carrito completo</a>
-                <a href="/finalizarCompra" class="btn btn-success w-100">Proceder al pago</a>
+                <a href="{{ route('carrito.mostrar') }}" class="btn btn-primary w-100 mb-2">Ver carrito completo</a>
+                <a href="{{ route('finalizarCompra.vista') }}" class="btn btn-success w-100">Proceder al pago</a>
             </div>
         @else
             <p class="text-muted text-center py-4">El carrito está vacío.</p>
@@ -64,7 +86,7 @@
 
     @include('partials.footer')
 
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -72,9 +94,15 @@
             const cerrarBtn = document.getElementById("cerrarSidebarBtn");
             const sidebar = document.getElementById("sidebarCarrito");
 
+            if (sidebar) {
+                sidebar.style.right = "-350px";
+            }
+
             if (cartBtn && sidebar) {
                 cartBtn.addEventListener("click", (e) => {
                     e.preventDefault();
+                    e.stopPropagation(); 
+                    
                     if (sidebar.style.right === "0px") {
                         sidebar.style.right = "-350px";
                     } else {
@@ -84,11 +112,21 @@
             }
 
             if (cerrarBtn && sidebar) {
-                cerrarBtn.addEventListener("click", () => {
+                cerrarBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
                     sidebar.style.right = "-350px";
                 });
             }
+
+            document.addEventListener("click", (e) => {
+                if (sidebar && sidebar.style.right === "0px") {
+                    if (!sidebar.contains(e.target) && e.target !== cartBtn && !cartBtn.contains(e.target)) {
+                        sidebar.style.right = "-350px";
+                    }
+                }
+            });
         });
     </script>
+
 </body>
 </html>

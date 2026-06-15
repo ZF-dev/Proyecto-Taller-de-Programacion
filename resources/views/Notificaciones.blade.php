@@ -58,16 +58,19 @@
                         <div class="accordion-body bg-light">
                             
                             @if($item->consulta)
+                                @php
+                                    $consultaArray = is_array($item->consulta) ? $item->consulta : json_decode($item->consulta, true);
+                                @endphp
                                 <div class="p-3 bg-white border rounded mb-3">
                                     <h5 class="border-bottom pb-2 text-primary mb-3">Ficha de la Consulta Comercial</h5>
                                     <div class="row g-2 small">
-                                        <div class="col-md-4"><strong>Nombre del Cliente:</strong> {{ $item->consulta['nombre'] }}</div>
-                                        <div class="col-md-4"><strong>Email de Contacto:</strong> <a href="mailto:{{ $item->consulta['email'] }}">{{ $item->consulta['email'] }}</a></div>
-                                        <div class="col-md-4"><strong>Teléfono:</strong> {{ $item->consulta['telefono'] }}</div>
+                                        <div class="col-md-4"><strong>Nombre del Cliente:</strong> {{ $consultaArray['nombre'] ?? 'N/D' }}</div>
+                                        <div class="col-md-4"><strong>Email de Contacto:</strong> <a href="mailto:{{ $consultaArray['email'] ?? '' }}">{{ $consultaArray['email'] ?? 'N/D' }}</a></div>
+                                        <div class="col-md-4"><strong>Teléfono:</strong> {{ $consultaArray['telefono'] ?? 'N/D' }}</div>
                                     </div>
                                     <div class="mt-4 p-3 bg-light rounded italic border-start border-primary border-3">
                                         <p class="mb-0 fw-semibold text-secondary">Mensaje enviado:</p>
-                                        <p class="mb-0 text-dark mt-1" style="white-space: pre-line;">"{{ $item->consulta['texto'] }}"</p>
+                                        <p class="mb-0 text-dark mt-1" style="white-space: pre-line;">"{{ $consultaArray['texto'] ?? 'N/D' }}"</p>
                                     </div>
                                 </div>
                             @else
