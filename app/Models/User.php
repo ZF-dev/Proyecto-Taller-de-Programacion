@@ -26,4 +26,67 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    protected static function booted()
+    {
+        // 👥 Creación de un nuevo usuario/admin desde el panel administrativo
+        static::created(function ($usuarioCreado) {
+            $accion = $usuarioCreado->role === 'admin' ? 'Alta de Administrador' : 'Alta de Usuario';
+            
+            Auditoria::create([
+                'user_id'        => auth()->id(), // Admin que ejecutó la acción
+                'accion'         => $accion,
+                'tabla_afectada' => 'users',
+                'ip_address'     => request()->ip(),
+                'detalles'       => [
+                    'usuario_afectado' => $usuarioCreado->name,
+                    'email'            => $usuarioCreado->email,
+                    'rol_asignado'     => $usuarioCreado->role
+                ]
+            ]);
+
+            if ($usuarioCreado->role === 'user') {
+                \App\Models\Notificacion::create([
+                    'mensaje'  => "🎉 ¡Nuevo cliente registrado! Bienvenido al sistema, {$usuarioCreado->name}.",
+                    'color'    => 'success', // Verde en Bootstrap
+                    'leido'    => false,
+                    'consulta' => null
+                ]);
+            }
+        });
+
+        // 🔐 Modificación de perfil o alteración de Roles (Escalación de Privilegios)
+        static::updated(function ($usuarioModificado) {
+            // Si el campo que cambió fue el rol, es un evento crítico de seguridad
+            if ($usuarioModificado->wasChanged('role')) {
+                Auditoria::create([
+                    'user_id'        => auth()->id(),
+                    'accion'         => 'Modificación de Privilegios (Seguridad)',
+                    'tabla_afectada' => 'users',
+                    'ip_address'     => request()->ip(),
+                    'detalles'       => [
+                        'usuario_afectado' => $usuarioModificado->name,
+                        'rol_anterior'     => $usuarioModificado->getOriginal('role'),
+                        'rol_nuevo'        => $usuarioModificado->role
+                    ]
+                ]);
+            }
+        });
+
+        // ❌ Eliminación de una cuenta desde el panel
+        static::deleted(function ($usuarioEliminado) {
+            $accion = $usuarioEliminado->role === 'admin' ? 'Baja de Administrador' : 'Baja de Usuario';
+
+            Auditoria::create([
+                'user_id'        => auth()->id(),
+                'accion'         => $accion,
+                'tabla_afectada' => 'users',
+                'ip_address'     => request()->ip(),
+                'detalles'       => [
+                    'usuario_eliminado' => $usuarioEliminado->name,
+                    'email'             => $usuarioEliminado->email
+                ]
+            ]);
+        });
+    }
 }

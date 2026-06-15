@@ -16,7 +16,6 @@ class RegisterController extends Controller
 
     public function registrar(Request $request)
 {
-    // 1. Sincronizamos las reglas con los 'name' exactos de tu formulario HTML
     $datosValidados = $request->validate([
         'name'             => 'required|string|max:255',
         'email'            => 'required|string|email|max:255|unique:users,email',
@@ -25,7 +24,6 @@ class RegisterController extends Controller
         'fecha_nacimiento' => 'required|date',
     ]);
 
-    // 2. Mapeamos los datos validados hacia las columnas reales de tu base de datos
     $usuario = User::create([
         'name'             => $datosValidados['name'],
         'email'            => $datosValidados['email'],

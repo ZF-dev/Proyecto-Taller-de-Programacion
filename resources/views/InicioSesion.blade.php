@@ -16,16 +16,16 @@
                     <h1 class="card-title text-center">Inicio de Sesion</h1>
 
                     
-                    <form action="{{ url('/IniciarSesion') }}" method="POST">
-                        @csrf <!-- Token de seguridad para evitar ataques CSRF -->
+                    <form action="{{ route('login.conectar') }}" method="POST">
+                        @csrf 
                         <div class="mb-3">
-                            <label class="form-label">Gmail</label>
-                            <input name="usuario" type="email" class="form-control" placeholder="Ingrese su Gmail" required>
+                            <label class="form-label">Email</label>
+                            <input name="email" type="email" class="form-control" placeholder="Ingrese su Email" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Contraseña</label>
-                            <input name="contrasena" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
+                            <input name="password" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Ingresar</button>
@@ -33,7 +33,7 @@
                     </form>
 
                     <div class="mt-3 text-center">
-                        <p>¿No tienes una cuenta? <a href="/registro">Regístrate aquí</a></p>
+                        <p>¿No tienes una cuenta? <a href="{{ route('register.mostrar') }}">Regístrate aquí</a></p>
                     </div>
 
                 </div>

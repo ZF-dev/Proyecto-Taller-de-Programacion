@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('mensaje', 255);
             $table->string('color', 20);
             $table->boolean('leido')->default(false);
+            $table->json('consulta')->nullable();
             $table->timestamps();
         });
     }

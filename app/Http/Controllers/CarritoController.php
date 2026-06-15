@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\motos;
-use App\Models\CarritoItem;
+use App\Models\Moto;
+use App\Models\VentaItem;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -12,31 +12,34 @@ class CarritoController extends Controller
     {
         $request->validate([
             'producto_id' => 'required|integer',
-            'cantidad' => 'required|integer|min:1',
+            'cantidad'    => 'required|integer|min:1',
         ]);
 
         $productoId = $request->producto_id;
         $cantidad = $request->cantidad;
 
-        $producto = motos::find($productoId);
+        $producto = Moto::select('id', 'precio', 'modelo', 'nombre')->find($productoId);
         if (!$producto) {
             return redirect()->back()->with('error', 'Producto no encontrado.');
         }
 
         $userId = auth()->id();
 
-        $item = CarritoItem::where('user_id', $userId)
-                           ->where('moto_id', $productoId)
-                           ->first();
+        $item = VentaItem::where('user_id', $userId)
+                         ->whereNull('venta_id')
+                         ->where('moto_id', $productoId)
+                         ->first();
 
         if ($item) {
-            $item->update(['cantidad' => $item->cantidad + $cantidad]);
+            $item->increment('cantidad', $cantidad);
         } else {
-            CarritoItem::create([
-                'user_id' => $userId,
-                'moto_id' => $productoId,
-                'cantidad' => $cantidad,
-                'precio' => $producto->precio,
+            VentaItem::create([
+                'user_id'               => $userId,
+                'venta_id'              => null, // Queda nulo hasta que se procese el pago
+                'moto_id'               => $productoId,
+                'moto_modelo_historico' => $producto->modelo ?? $producto->nombre,
+                'cantidad'              => $cantidad,
+                'precio_unitario'       => $producto->precio,
             ]);
         }
 
@@ -46,11 +49,13 @@ class CarritoController extends Controller
     public function mostrar()
     {
         $userId = auth()->id();
-        $items = CarritoItem::where('user_id', $userId)
-                            ->with('moto')
-                            ->get();
+        
+        $items = VentaItem::where('user_id', $userId)
+                          ->whereNull('venta_id')
+                          ->with(['moto' => fn($q) => $q->select('id', 'nombre', 'modelo', 'stock')])
+                          ->get();
                             
-        $total = $items->sum(fn ($item) => $item->precio * $item->cantidad);
+        $total = $items->sum(fn ($item) => $item->precio_unitario * $item->cantidad);
 
         return view('carrito', ['carrito' => $items, 'total' => $total]);
     }
@@ -61,10 +66,12 @@ class CarritoController extends Controller
 
         $userId = auth()->id();
 
-        CarritoItem::where('user_id', $userId)
-                   ->where('moto_id', $request->producto_id)
-                   ->delete();
+        VentaItem::where('user_id', $userId)
+                 ->whereNull('venta_id')
+                 ->where('moto_id', $request->producto_id)
+                 ->delete();
 
         return redirect()->back()->with('success', 'Producto eliminado del carrito.');
     }
 }
+

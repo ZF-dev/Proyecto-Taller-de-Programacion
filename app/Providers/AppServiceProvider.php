@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Models\CarritoItem;
+use App\Models\VentaItem; // Tu nuevo modelo unificado
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,22 +21,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Este composer se aplica a todas las vistas (*)
-        View::composer('*', function ($view) {
+        View::composer('layout.esqueleto', function ($view) {
             if (auth()->check()) {
-                $items = CarritoItem::where('user_id', auth()->id())
-                                ->with('moto')
+                $userId = auth()->id();
+                
+                // 🔒 CADA USUARIO VE SU PROPIO CARRITO: Filtramos por su ID y donde venta_id sea NULL
+                $items = VentaItem::where('user_id', $userId)
+                                ->whereNull('venta_id')
+                                ->with(['moto' => fn($q) => $q->select('id', 'nombre', 'imagen')])
                                 ->get();
 
-                $total = $items->sum(fn ($item) => $item->precio * $item->cantidad);
+                $total = $items->sum(fn ($item) => $item->precio_unitario * $item->cantidad);
+                $conteo = $items->sum('cantidad');
 
-                // Aquí inyectas las variables en todas las vistas
-                $view->with('carritoSidebar', $items)
-                     ->with('totalCarrito', $total);
+                $view->with([
+                    'carritoSidebar' => $items,
+                    'totalCarrito'   => $total,
+                    'conteoCarrito'  => $conteo
+                ]);
             } else {
-                // Si no hay usuario logueado, pasas valores vacíos
-                $view->with('carritoSidebar', collect())
-                     ->with('totalCarrito', 0);
+                $view->with([
+                    'carritoSidebar' => collect(),
+                    'totalCarrito'   => 0,
+                    'conteoCarrito'  => 0
+                ]);
             }
         });
     }

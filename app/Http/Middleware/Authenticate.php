@@ -9,6 +9,6 @@ class Authenticate extends Middleware //aqui sobreescribimos el metodo redirectT
 {
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : '/IniciarSesion';
+        return $request->expectsJson() ? null : route('login'); 
     }
 }

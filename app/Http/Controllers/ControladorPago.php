@@ -3,37 +3,74 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CarritoItem;
 use App\Models\Venta;
-use App\Models\motos;
+use App\Models\VentaItem;
+use App\Models\Moto;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
-class ControladorPago extends Controller
+class VentaController extends Controller
 {
-    public function DatosPagoCompletado(request $request){
-
-        return view('confirmarPago');
-
-    }
-
-    public function registrarVenta(request $request){
+    public function registrarVenta(Request $request)
+    {
         $userId = auth()->id();
 
-        $items = CarritoItem::where('user_id', $userId)
-                            ->with('moto')
-                            ->get();
+        $request->validate([
+            'metodo_pago'  => ['required', Rule::in(['tarjeta', 'transferencia', 'efectivo'])],
+            'titular_pago' => ['required', 'string', 'max:255'],
+            'dni_pagador'  => ['required', 'integer', 'digits_between:7,9'],
+            'numeroTarjeta'=> ['required_if:metodo_pago,tarjeta', 'nullable', 'numeric', 'digits:16'],
+            'comprobante'  => ['required_if:metodo_pago,transferencia', 'nullable', 'string', 'max:255'],
+        ]);
 
-        $venta = Venta::crearDesdeCarrito($userId, $items, $request->only(['numeroTarjeta', 'nombreTitular', 'dniTitular']));
+        $itemsCarrito = VentaItem::where('user_id', $userId)
+            ->whereNull('venta_id')
+            ->with(['moto' => fn($q) => $q->select('id', 'nombre', 'stock')])
+            ->cursor();
 
-        foreach ($items as $item) {
-            $moto = $item->moto;
-            if ($moto) {
-                $moto->stock -= $item->cantidad;
-                $moto->save();
-            }
+        if ($itemsCarrito->isEmpty()) {
+            return redirect()->back()->with('error', 'El carrito está vacío.');
         }
 
-        CarritoItem::where('user_id', $userId)->delete();
-        return redirect()->route('ventaConfirmada')->with('success', 'Compra realizada con éxito. ¡Gracias por tu compra!');
+        $totalVenta = 0;
+        $idsItemsAActualizar = [];
+        $descuentosStock = [];
+
+        foreach ($itemsCarrito as $item) {
+            if (!$item->moto || $item->moto->stock < $item->cantidad) {
+                return redirect()->back()
+                    ->with('error', "Stock insuficiente para: " . ($item->moto->nombre ?? 'Producto'));
+            }
+
+            $totalVenta += ($item->precio_unitario * $item->cantidad);
+        
+            $idsItemsAActualizar[] = $item->id;
+
+            $descuentosStock[$item->moto_id] = $item->cantidad;
+        }
+
+        DB::transaction(function () use ($userId, $totalVenta, $request, $idsItemsAActualizar, $descuentosStock) {
+            
+            // Creamos la cabecera de la Venta
+            $venta = Venta::create([
+                'user_id'                  => $userId,
+                'total'                    => $totalVenta,
+                'metodo_pago'              => $request->metodo_pago,
+                'titular_pago'             => $request->titular_pago,
+                'dni_pagador'              => $request->dni_pagador,
+                'comprobante_transferencia'=> $request->metodo_pago === 'transferencia' ? $request->comprobante : null,
+                'tarjeta_ultimos_cuatro'   => $request->metodo_pago === 'tarjeta' ? substr($request->numeroTarjeta, -4) : null,
+            ]);
+
+            VentaItem::whereIn('id', $idsItemsAActualizar)->update([
+                'venta_id' => $venta->id
+            ]);
+
+            foreach ($descuentosStock as $motoId => $cantidad) {
+                Moto::where('id', $motoId)->decrement('stock', $cantidad);
+            }
+        });
+
+        return redirect()->route('ventaConfirmada')->with('success', '¡Compra procesada con éxito!');
     }
 }

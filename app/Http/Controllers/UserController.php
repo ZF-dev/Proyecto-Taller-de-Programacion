@@ -16,7 +16,7 @@ class UserController extends Controller
     public function cambiarRol(Request $request, $id)
     {
         $request->validate([
-        'role' => 'required|in:user,buyer,admin'
+        'role' => 'required|in:user,admin'
         ]);
 
         $usuario = User::findOrFail($id);
@@ -36,5 +36,11 @@ class UserController extends Controller
         $usuario->delete();
 
         return redirect()->back()->with('exito', 'Usuario eliminado de la base de datos.');
+    }
+
+    public function mostrarPerfil()
+    {
+        $usuario = auth()->user();
+        return view('mostrarPerfil', compact('usuario'));
     }
 }

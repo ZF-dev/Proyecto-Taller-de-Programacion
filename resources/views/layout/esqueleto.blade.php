@@ -1,60 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@yield('title', 'Only Motos') </title><!-- esto hace que cada pagina que use este esqueleto pueda poner su propio titulo, y si no lo pone se pone el que esta entre comillas -->
-        <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="/css/styles.css">
-        <link href="https://googleapis.com" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Only Motos')</title>
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+</head>
 
-     <!-- esto hace que el body trate de ocupar el 100% de la pantalla -->
-    <body class="d-flex flex-column min-vh-100">
-        @include('partials.header') <!-- esto incluye el header en todas las paginas que usen este esqueleto -->
+<body class="d-flex flex-column min-vh-100">
+    @include('partials.header')
 
-            <!-- esto hace que el main trate de estirarse hasta el fin de pagina osea el footer -->
-        <main class="flex-grow-1 white"> 
-            @yield('contenido')<!-- esto hace que cada pagina que use este esqueleto pueda poner su contenido en esta seccion -->
-        </main>
+    <main class="flex-grow-1 bg-white"> 
+        @yield('contenido')
+    </main>
 
-        <!-- Sidebar global, fuera del header -->
-        <div id="sidebarCarrito" class="sidebar">
-            <h2><img src="/img/carritoIcono.png" alt="Carrito" width="24" height="24" style="vertical-align: middle;"> <b>Carrito</b></h2>
-            @if($carritoSidebar && count($carritoSidebar) > 0)
+    <!-- Sidebar global del Carrito (Usa tu modelo VentaItem unificado) -->
+    <div id="sidebarCarrito" class="sidebar bg-white shadow-lg border-start p-3" style="position: fixed; right: -350px; top: 0; width: 350px; height: 100vh; transition: 0.3s; z-index: 1050; overflow-y: auto;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">
+                <img src="{{ asset('img/carritoIcono.png') }}" alt="" width="24" height="24" class="me-2">
+                <b>Mi Carrito</b>
+            </h4>
+            <button type="button" class="btn-close" id="cerrarSidebarBtn"></button>
+        </div>
+        
+        <hr>
+
+        @if(auth()->check() && $carritoSidebar->isNotEmpty())
+            <div class="carrito-items-lista mb-4">
                 @foreach($carritoSidebar as $item)
-                    <div class="carrito-item">
-                        <img src="{{ asset($item->moto->imagen) }}" width="50" height="50" alt="{{ $item->moto->nombre }}">
-                        <p>{{ $item->moto->nombre }} - ${{ number_format($item->precio, 2) }} x {{ $item->cantidad }}</p>
-                        <form method="POST" action="/carrito/eliminar" style="display: inline;">
+                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                        <img src="{{ asset($item->moto->imagen ?? 'img/default-moto.jpg') }}" width="50" height="50" alt="" class="rounded me-2" style="object-fit: cover;">
+                        <div class="flex-grow-1 small">
+                            <p class="mb-0 fw-bold text-truncate" style="max-width: 180px;">
+                                {{ $item->moto->nombre ?? $item->moto_modelo_historico }}
+                            </p>
+                            <p class="mb-0 text-muted">
+                                ${{ number_format($item->precio_unitario, 2, ',', '.') }} x {{ $item->cantidad }}
+                            </p>
+                        </div>
+                        <form method="POST" action="/carrito/eliminar" class="ms-2">
                             @csrf
                             <input type="hidden" name="producto_id" value="{{ $item->moto_id }}">
-                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-sm btn-outline-danger border-0">✕</button>
                         </form>
                     </div>
                 @endforeach
-                <hr>
-                <p><strong>Total: ${{ number_format($totalCarrito, 2) }}</strong></p>
-                <a href="/carrito" class="btn btn-primary">Ver carrito completo</a>
-            @else
-                <p>El carrito está vacío.</p>
-            @endif
-        </div>
+            </div>
+            
+            <div class="mt-auto">
+                <h5 class="d-flex justify-content-between mb-3">
+                    <span>Total:</span>
+                    <span class="text-success">${{ number_format($totalCarrito, 2, ',', '.') }}</span>
+                </h5>
+                <a href="/carrito" class="btn btn-primary w-100 mb-2">Ver carrito completo</a>
+                <a href="/finalizarCompra" class="btn btn-success w-100">Proceder al pago</a>
+            </div>
+        @else
+            <p class="text-muted text-center py-4">El carrito está vacío.</p>
+        @endif
+    </div>
 
-        @include('partials.footer')<!-- esto incluye el footer en todas las paginas que usen este esqueleto -->
+    @include('partials.footer')
 
-        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => { // Asegura que el DOM esté cargado antes de ejecutar el script
-                const cartBtn = document.getElementById("carritoBtn");// Botón del carrito en el header
-                const sidebar = document.getElementById("sidebarCarrito");// Sidebar del carrito
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cartBtn = document.getElementById("carritoBtn");
+            const cerrarBtn = document.getElementById("cerrarSidebarBtn");
+            const sidebar = document.getElementById("sidebarCarrito");
 
-                cartBtn.addEventListener("click", () => { // Agrega un evento de clic al botón del carrito
-                    sidebar.classList.toggle("show"); // Alterna la clase "show" para mostrar u ocultar el sidebar
+            if (cartBtn && sidebar) {
+                cartBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (sidebar.style.right === "0px") {
+                        sidebar.style.right = "-350px";
+                    } else {
+                        sidebar.style.right = "0px";
+                    }
                 });
-            });
-        </script>
+            }
 
-    </body>
+            if (cerrarBtn && sidebar) {
+                cerrarBtn.addEventListener("click", () => {
+                    sidebar.style.right = "-350px";
+                });
+            }
+        });
+    </script>
+</body>
 </html>

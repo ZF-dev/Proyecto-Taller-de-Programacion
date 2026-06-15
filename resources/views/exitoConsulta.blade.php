@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-    @extends('layout.esqueleto')
+@extends('layout.esqueleto')
 
     @section('contenido')
     <div class="container mt-4"> 
@@ -13,5 +11,4 @@
             </div>
         </div>
     </div>
-    @endsection
-</html> 
+@endsection

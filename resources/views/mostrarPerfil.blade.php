@@ -1,7 +1,7 @@
-<html>
-        @extends('layout.esqueleto')
 
-    @section('contenido')
+@extends('layout.esqueleto')
+
+@section('contenido')
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -59,5 +59,4 @@
             </div>
         </div>
     </div>
-    @endsection
-</html>
+@endsection
