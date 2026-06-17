@@ -79,6 +79,9 @@ Route::patch('/carrito/modificar-cantidad', [CarritoController::class, 'modifica
         Route::post('/dashboard/motos', [AdminMotoController::class, 'store'])->name('admin.motos.store');
         Route::patch('/dashboard/motos/{id}/stock', [AdminMotoController::class, 'actualizarStock'])->name('admin.motos.stock');
         Route::delete('/dashboard/motos/{id}', [AdminMotoController::class, 'destroy'])->name('admin.motos.destroy');
+        Route::patch('/dashboard/motos/{id}/precio', [AdminMotoController::class, 'actualizarPrecio'])->name('admin.motos.precio');
+        Route::post('/dashboard/motos/vender', [AdminMotoController::class, 'venderFisica'])->name('admin.motos.vender');
+
 
         Route::get('/dashboard/usuarios', [AdminUserController::class, 'index'])->name('admin.usuarios.index');
         Route::post('/dashboard/usuarios', [AdminUserController::class, 'store'])->name('admin.usuarios.store');

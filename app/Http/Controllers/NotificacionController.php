@@ -12,9 +12,9 @@ class NotificacionController extends Controller
         $query = Notificacion::orderBy('leido', 'asc')->orderByDesc('created_at');
 
         if ($request->tipo === 'consultas') {
-            $query->whereNotNull('consulta'); // Solo las que vienen del formulario de contacto
+            $query->whereNotNull('consulta');
         } elseif ($request->tipo === 'avisos') {
-            $query->whereNull('consulta'); // Solo las alertas automáticas de stock/usuarios/ventas
+            $query->whereNull('consulta');
         }
 
         $notificaciones = $query->paginate(10);
@@ -34,7 +34,7 @@ class NotificacionController extends Controller
 
         Notificacion::create([
             'mensaje'  => "Nueva consulta de contacto recibida de: {$request->nombre}",
-            'color'    => 'info', // Determina el color de la alerta visual (Bootstrap: info, warning, success)
+            'color'    => 'info', 
             'leido'    => false,
             'consulta' => json_encode([
                 'nombre'   => $request->nombre,
@@ -47,7 +47,6 @@ class NotificacionController extends Controller
         return redirect()->back()->with('success', '¡Tu consulta fue enviada con éxito! Nos comunicaremos a la brevedad.');
     }
 
-    // 3. Acción del Admin: Marcar como leída/respondida (Habilita el Prunable a los 15 días)
     public function marcarLeida($id)
     {
         $notificacion = Notificacion::findOrFail($id);
