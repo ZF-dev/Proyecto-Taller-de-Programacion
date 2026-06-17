@@ -99,6 +99,14 @@
                     <input type="email" name="email" class="form-control" placeholder="nombre@onlymotos.com" required>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label small fw-bold">DNI</label>
+                    <input type="text" name="dni" class="form-control" placeholder="Ej: 12345678" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Fecha de Nacimiento</label>
+                    <input type="date" name="fecha_nacimiento" class="form-control" required>
+                </div>
+                <div class="mb-3">
                     <label class="form-label small fw-bold">Contraseña de Acceso (Mínimo 6 caracteres)</label>
                     <input type="password" name="password" class="form-control" placeholder="******" required>
                 </div>

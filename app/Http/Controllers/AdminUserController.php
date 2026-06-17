@@ -22,19 +22,21 @@ class AdminUserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
-            'role'     => ['required', Rule::in(['admin', 'user'])],
-        ]);
+        $datosValidados = $request->validate([
+        'name'             => 'required|string|max:255',
+        'email'            => 'required|string|email|max:255|unique:users,email',
+        'password'         => 'required|string|min:6',
+        'dni'              => 'required|numeric|digits_between:7,8|unique:users,DNI', 
+        'fecha_nacimiento' => 'required|date',
+    ]);
 
-        User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-            'role'     => $request->role,
-        ]);
+        $usuario = User::create([
+        'name'             => $datosValidados['name'],
+        'email'            => $datosValidados['email'],
+        'password'         => bcrypt($datosValidados['password']), 
+        'dni'              => $datosValidados['dni'],
+        'fecha_nacimiento' => $datosValidados['fecha_nacimiento']
+    ]);
 
         return redirect()->back()->with('success', 'Usuario registrado con éxito.');
     }

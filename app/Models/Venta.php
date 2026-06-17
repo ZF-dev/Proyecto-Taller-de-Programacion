@@ -19,7 +19,6 @@ class Venta extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Relación directa con sus motos compradas
     public function items(): HasMany
     {
         return $this->hasMany(VentaItem::class, 'venta_id');
@@ -27,10 +26,9 @@ class Venta extends Model
 
     protected static function booted()
     {
-        // 💰 Escucha la creación exitosa de una venta comercial
         static::created(function ($venta) {
             Auditoria::create([
-                'user_id'        => auth()->id(), // ID del cliente si compró por la web, o del Admin si fue venta física
+                'user_id'        => auth()->id(), 
                 'accion'         => 'Cierre de Venta Comercial',
                 'tabla_afectada' => 'ventas',
                 'ip_address'     => request()->ip(),
@@ -44,7 +42,7 @@ class Venta extends Model
 
             \App\Models\Notificacion::create([
                 'mensaje'  =>  "💰 ¡Venta Online Procesada! Cobro de $" . number_format($venta->total, 2, ',', '.') . " mediante " . strtoupper($venta->metodo_pago),
-                'color'    => 'success', // Verde
+                'color'    => 'success',
                 'leido'    => false,
                 'consulta' => null
             ]);
