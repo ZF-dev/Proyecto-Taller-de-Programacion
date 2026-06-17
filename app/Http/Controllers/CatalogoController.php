@@ -22,7 +22,7 @@ class CatalogoController extends Controller
 
         $motos = $query->orderBy('nombre')->paginate(9);
 
-        return view('catalogo', compact('motos', 'marcas', 'marcaSeleccionada'));
+        return view('Catalogo', compact('motos', 'marcas', 'marcaSeleccionada'));
     }
 }
 

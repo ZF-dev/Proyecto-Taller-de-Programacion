@@ -33,7 +33,7 @@ class AdminMotoController extends Controller
             'descripcion' => $request->descripcion,
             'precio'      => $request->precio,
             'stock'       => $request->stock,
-            'marca_id'    => $marca->id, // 👈 CORREGIDO: Ahora nunca va a faltar este campo
+            'marca_id'    => $marca->id,
             'activo'      => true,
         ]);
 

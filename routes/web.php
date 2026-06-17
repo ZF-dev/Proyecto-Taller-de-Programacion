@@ -48,9 +48,9 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
-Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
-Route::patch('/carrito/modificar-cantidad', [CarritoController::class, 'modificarCantidad'])->name('carrito.modificar');
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+    Route::patch('/carrito/modificar-cantidad', [CarritoController::class, 'modificarCantidad'])->name('carrito.modificar');
 
 
     Route::get('/finalizarCompra', function(){return view('finalizarCompra');})->name('finalizarCompra.vista');

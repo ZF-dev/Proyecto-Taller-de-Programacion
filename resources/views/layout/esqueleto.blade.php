@@ -63,7 +63,6 @@
                         </div>
                         <form method="POST" action="{{ route('carrito.eliminar') }}" class="ms-2">
                             @csrf
-                            @method('DELETE')
                             <input type="hidden" name="producto_id" value="{{ $item->moto_id }}">
                             <button type="submit" class="btn btn-sm btn-outline-danger border-0">✕</button>
                         </form>
