@@ -14,6 +14,17 @@
         <div class="card mx-auto w-100" style="max-width: 420px; border-radius: 10px; border: none; shadow-sm">
             <div class="card-body p-4">
                 <h1 class="card-title text-center mb-4 fw-bold">Registrarse</h1>
+                    @if(session('success'))
+                        <div class="alert alert-success border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
+                            🎉 <strong>¡Éxito!</strong> {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
+                            ⚠️ <strong>Error en Operación:</strong> {{ session('error') }}
+                        </div>
+                    @endif
 
                 @if($errors->any())
                     <div class="alert alert-danger py-2 px-3 small border-0 mb-3" style="border-radius: 6px;">

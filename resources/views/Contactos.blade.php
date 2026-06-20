@@ -1,5 +1,7 @@
 @extends('layout.esqueleto')
 
+@section('title', 'Contactos')
+
 @section('contenido')
 <main class="container my-5">
     <div class="row g-5">

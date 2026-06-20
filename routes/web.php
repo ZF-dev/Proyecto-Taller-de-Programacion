@@ -43,11 +43,11 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::post('/logout', [LoginController::class, 'salir'])->name('logout');
-    Route::get('/mostrarPerfil', [AdminUserController::class, 'mostrarPerfil'])->name('verPerfil');
+    Route::get('/perfil/mostrarPerfil', [AdminUserController::class, 'mostrarPerfil'])->name('verPerfil');
     Route::patch('/perfil/actualizar', [AdminUserController::class, 'actualizarPerfil'])->name('perfil.actualizar');
 
 
-    Route::get('/carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
+    Route::get('/carrito/mostrar', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
     Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
     Route::post('/carrito/eliminar', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::patch('/carrito/modificar-cantidad', [CarritoController::class, 'modificarCantidad'])->name('carrito.modificar');
@@ -61,9 +61,9 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
     
         Route::controller(AdminUserController::class)->name('usuarios.')->group(function () {
-            Route::get('/usuarios', 'index')->name('index');
-            Route::patch('/usuarios/{id}/rol', 'cambiarRol')->name('rol');
-            Route::delete('/usuarios/{id}', 'destroy')->name('destroy');
+            Route::get('/dashboard/usuarios', 'index')->name('index');
+            Route::patch('/dashboard/usuarios/{id}/rol', 'cambiarRol')->name('rol');
+            Route::delete('/dashboard/usuarios/{id}', 'destroy')->name('destroy');
         });
 
         Route::get('/dashboard/notificaciones', [NotificacionController::class, 'index'])->name('notificaciones.index');

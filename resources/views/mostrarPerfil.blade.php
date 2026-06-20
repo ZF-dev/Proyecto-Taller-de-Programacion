@@ -1,10 +1,11 @@
 @extends('layout.esqueleto')
 
+@section('title', 'Visualizacion del perfil')
+
 @section('contenido')
 <div class="container my-5">
     <div class="row justify-content-center g-4">
         
-        <!-- COLUMNA IZQUIERDA: TARJETA DE PERFIL INTERACTIVA -->
         <div class="col-md-6">
             @if(session('success'))
                 <div class="alert alert-success py-2 px-3 small shadow-sm mb-3" style="border-radius: 6px;">
@@ -29,11 +30,12 @@
                 
                 <div class="card-body p-4">
                     
-                    <!-- Campo: Nombre Completo -->
                     <div class="mb-3 border-bottom pb-2 position-relative target-container">
                         <label class="text-muted small d-block">Nombre Completo</label>
                         <div class="d-flex justify-content-between align-items-center view-mode">
-                            <strong class="text-dark">{{ $usuario->name }}</strong>
+                            <div class="d-flex align-items-center gap-2 text-truncate">
+                                <strong class="text-dark">{{ $usuario->name }}</strong>
+                            </div>
                             <button type="button" class="btn btn-sm btn-link text-decoration-none p-0" onclick="activarEdicion(this)">✏️</button>
                         </div>
                         <form action="{{ route('perfil.actualizar') }}" method="POST" class="edit-mode d-none m-0">
@@ -44,7 +46,6 @@
                         </form>
                     </div>
 
-                    <!-- Campo: DNI -->
                     <div class="mb-3 border-bottom pb-2 position-relative target-container">
                         <label class="text-muted small d-block">DNI</label>
                         <div class="d-flex justify-content-between align-items-center view-mode">
@@ -58,7 +59,6 @@
                         </form>
                     </div>
 
-                    <!-- Campo: Fecha de Nacimiento -->
                     <div class="mb-3 border-bottom pb-2 position-relative target-container">
                         <label class="text-muted small d-block">Fecha de Nacimiento</label>
                         <div class="d-flex justify-content-between align-items-center view-mode">
@@ -73,7 +73,6 @@
                         </form>
                     </div>
 
-                    <!-- Campo: Correo Electrónico -->
                     <div class="mb-4 border-bottom pb-2 position-relative target-container">
                         <label class="text-muted small d-block">Correo Electrónico</label>
                         <div class="d-flex justify-content-between align-items-center view-mode">
@@ -88,7 +87,6 @@
                         </form>
                     </div>
 
-                    <!-- 🔴 BOTÓN DE CERRAR SESIÓN -->
                     <form action="{{ route('logout') }}" method="POST" class="m-0">
                         @csrf
                         <button type="submit" class="btn btn-danger w-100 d-flex align-items-center justify-content-center gap-2 py-2 fw-bold shadow-sm">

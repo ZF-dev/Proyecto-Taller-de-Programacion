@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-    @extends('layout.esqueleto')
+@extends('layout.esqueleto')
 
-    @section('contenido')
+@section('title', 'Términos y Condiciones - Only Motos')
 
-    <main class="container my-5">
+@section('contenido')
+
+<main class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-11">
             <div class="card shadow-sm border-0">
@@ -14,7 +14,6 @@
                     
                     <hr class="my-4">
 
-                    <!-- 1. Aviso Legal y Usos del Sitio -->
                     <section class="mb-5">
                         <h4 class="fw-bold text-primary">1. Aviso Legal y Términos de Uso</h4>
                         <p class="text-secondary text-justify">
@@ -22,7 +21,6 @@
                         </p>
                     </section>
 
-                    <!-- 2. Políticas de Privacidad -->
                     <section class="mb-5">
                         <h4 class="fw-bold text-primary">2. Políticas de Privacidad</h4>
                         <p class="text-secondary">
@@ -30,7 +28,6 @@
                         </p>
                     </section>
 
-                    <!-- 3. Procedimiento de Venta y Pagos -->
                     <section class="mb-5">
                         <h4 class="fw-bold text-primary">3. Procedimiento de Venta y Medios de Pago</h4>
                         <p class="text-secondary">
@@ -38,7 +35,6 @@
                         </p>
                     </section>
 
-                    <!-- 4. Garantías y Soporte Postventa -->
                     <section class="mb-5">
                         <h4 class="fw-bold text-primary">4. Garantías y Soporte Postventa</h4>
                         <p class="text-secondary">
@@ -47,7 +43,6 @@
                         </p>
                     </section>
 
-                    <!-- 5. Entregas y Tiempos -->
                     <section class="mb-5">
                         <h4 class="fw-bold text-primary">5. Formas de Entrega y Tiempos Estimados</h4>
                         <ul class="text-secondary">
@@ -66,7 +61,5 @@
             </div>
         </div>
     </div>
-    </main>
-
-    @endsection
-</html>
+</main>
+ @endsection

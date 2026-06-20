@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-    @extends('layout.esqueleto')
+ @extends('layout.esqueleto')
 
-    @section('contenido')
+@section('title', 'Quiénes Somos')
 
-    <main class="container my-5">
-    <!-- Sección: Quiénes Somos -->
+@section('contenido')
+
+<main class="container my-5">
     <section class="text-center py-5">
         <h1 class="display-2 fw-extrabold text-dark">ONLY<span class="text-primary"> MOTOS</span></h1>
         <p class="lead fs-3 text-muted mx-auto" style="max-width: 800px;">
@@ -16,7 +15,6 @@
 
     <hr class="my-5 opacity-25">
 
-    <!-- Sección: Por qué elegirnos -->
     <section class="row align-items-center py-4">
         <div class="col-md-6">
             <h2 class="display-5 fw-bold mb-4">¿Por qué Only Motos?</h2>
@@ -51,7 +49,6 @@
 
     <hr class="my-5 opacity-25">
 
-    <!-- Sección: Historia y Equipo -->
     <section class="py-4">
         <div class="text-center mb-5">
             <h2 class="display-5 fw-bold">Detrás del Casco</h2>
@@ -59,7 +56,6 @@
         </div>
 
         <div class="row g-4 justify-content-center">
-            <!-- Socio 1: Joako -->
             <div class="col-12 col-md-5 col-lg-4">
                 <div class="card border-0 shadow-sm h-100 text-center p-3">
                     <img src="/img/joako.png" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="Joaquín" style="width: 160px; height: 160px; object-fit: cover; border: 5px solid #0d6efd;">
@@ -71,7 +67,6 @@
                 </div>
             </div>
 
-            <!-- Socio 2: Fede -->
             <div class="col-12 col-md-5 col-lg-4">
                 <div class="card border-0 shadow-sm h-100 text-center p-3">
                     <img src="/img/fede.png" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="Federico" style="width: 160px; height: 160px; object-fit: cover; border: 5px solid #0d6efd;">
@@ -89,7 +84,6 @@
                 <h3 class="h4 fw-bold text-secondary text-uppercase">Nuestro Staff Especializado</h3>
             </div>
 
-            <!-- Empleada 1: Sofía -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card border-0 shadow-sm h-100 text-center pb-3">
                     <img src="/img/sofia.png" class="card-img-top rounded-circle mx-auto mt-4 shadow-sm" alt="Ventas" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #dee2e6;">
@@ -101,7 +95,6 @@
                 </div>
             </div>
 
-            <!-- Empleado 2: Lucas -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card border-0 shadow-sm h-100 text-center pb-3">
                     <img src="/img/sofia.png" class="card-img-top rounded-circle mx-auto mt-4 shadow-sm" alt="Mecánico" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #dee2e6;">
@@ -113,7 +106,6 @@
                 </div>
             </div>
 
-            <!-- Empleada 3: Valentina -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card border-0 shadow-sm h-100 text-center pb-3">
                     <img src="/img/sofia.png" class="card-img-top rounded-circle mx-auto mt-4 shadow-sm" alt="Gestoría" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #dee2e6;">
@@ -127,6 +119,4 @@
         </div>
     </section>
 </main>
-
-    @endsection
-</html>
+@endsection

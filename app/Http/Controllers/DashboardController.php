@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Moto;
 use App\Models\Venta;
-use App\Models\VentaItem; // Tu nuevo modelo estrella para las estadísticas
+use App\Models\VentaItem;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 

@@ -1,5 +1,7 @@
 @extends('layout.dashboard-esqueleto')
 
+@section('title', 'Dashboard de Control')
+
 @section('contenido')
 <div class="container-fluid">
     <div class="row">

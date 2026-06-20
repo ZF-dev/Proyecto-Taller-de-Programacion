@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-
-    @extends('layout.esqueleto')
+@extends('layout.esqueleto')
     
-    @section('title', 'E-commerce "Only Motos"')
+@section('title', 'E-commerce "Only Motos"')
     
+@section('contenido')
+<main class="grow-flex-1 mb-3">
+            @if(session('success'))
+                <div class="alert alert-success border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
+                    🎉 <strong>¡Éxito!</strong> {{ session('success') }}
+                </div>
+            @endif
 
-    @section('contenido')
-    <main class="grow-flex-1 mb-3">
+            @if(session('error'))
+                <div class="alert alert-danger border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
+                    ⚠️ <strong>Error en Operación:</strong> {{ session('error') }}
+                </div>
+            @endif
         <div id="carruselPrincipal" class="carousel slide" data-bs-ride="carousel">
-        <!-- Indicadores (los puntitos de abajo) -->
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carruselPrincipal" data-bs-slide-to="0" class="active"></button>
                 <button type="button" data-bs-target="#carruselPrincipal" data-bs-slide-to="1"></button>
@@ -32,7 +38,6 @@
                 </div>
             </div>
 
-            <!-- Controles (flechas) -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carruselPrincipal" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </button>
@@ -41,10 +46,8 @@
             </button>
         </div>
 
-                <!-- Cambiamos a flex-column en celular y flex-row en PC -->
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 pt-5 pb-5">
 
-            <!-- Eliminamos el height fijo y usamos w-100 en celular / ancho fijo en PC -->
             <div class="card shadow-sm w-100" style="max-width: 18rem;">
                 <img src="/img/phoneC.svg" class="card-img-top rounded-circle mx-auto mt-3 shadow" alt="telefono" style="width: 60px; height: 60px; object-fit: contain; padding: 10px;">
                 <div class="card-body text-center">
@@ -71,8 +74,5 @@
 
         </div>
 
-    </main>
-    @endsection
-    
-    
-</html>
+</main>
+@endsection

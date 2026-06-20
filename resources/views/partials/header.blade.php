@@ -5,7 +5,7 @@
             <img src="/img/logosinB.png" class="img-back" width="115px" height="auto">
         </a>
                 
-        <div class="ms-auto d-flex align-items-center gap-3">
+        <div class="ms-auto d-flex align-items-center gap-3 {{ auth()->check() ? 'w-25' : 'justify-content-end' }}">
             
             @auth
                 <a href="#" class="btn btn-outline-light border-0 shadow-sm image-toggle-container position-relative" id="carritoBtn">
@@ -26,21 +26,28 @@
                     </span>
                 </div>
 
-                <a href="{{ route('verPerfil') }}" class="btn btn-outline-light border-0 shadow-sm image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
-                    <span class="nombre-usuario text-black mb-0">{{ auth()->user()->name }}</span>
-                    <div class="position-relative" style="width: 24px; height: 24px;">
-                        <img src="/img/userW.svg" class="img-front">   
-                        <img src="/img/userB.svg" class="img-back">
-                    </div>
-                </a>
+                <div class="d-flex align-items-center" style="max-width: 150px; flex-shrink: 1;">
+                    <a href="{{ route('verPerfil') }}" class="btn btn-outline-light border-0 shadow-sm image-toggle-container d-flex align-items-center gap-2 text-decoration-none w-100">
+                        <span class="nombre-usuario text-black mb-0 text-truncate d-inline-block" style="max-width: 100px;">
+                            {{ auth()->user()->name }}
+                        </span>
+                        <div class="position-relative flex-shrink-0" style="width: 24px; height: 24px;">
+                            <img src="/img/userW.svg" class="img-front" alt="Usuario">   
+                            <img src="/img/userB.svg" class="img-back" alt="Usuario">
+                        </div>
+                    </a>
+                </div>
 
                 @if(auth()->user()->role === 'admin')
+                    
+                    <div class="d-flex align-items-center w-25">
                     <a href="{{ route('dashboard.index') }}" class="btn btn-outline-light border-0 shadow-sm image-toggle-container d-flex align-items-center gap-2 text-decoration-none">
                         <div class="position-relative" style="width: 24px; height: 24px;">
                             <img src="/img/adminW.svg" class="img-front">   
                             <img src="/img/adminB.svg" class="img-back">
                         </div>
                     </a>
+                    </div>
                 @endif
 
             @else

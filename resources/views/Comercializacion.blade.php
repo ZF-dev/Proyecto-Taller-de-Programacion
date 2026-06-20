@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-    @extends('layout.esqueleto')
+@extends('layout.esqueleto')
 
-    @section('contenido')
+@section('title', 'Comercializacion')
 
-    <main class="container my-5">
-    <!-- Encabezado -->
+@section('contenido')
+
+<main class="container my-5">
     <section class="text-center py-5 bg-dark text-white rounded-5 mb-5 shadow">
         <h1 class="display-3 fw-bold">Comercialización</h1>
         <p class="lead">Todo lo que necesitás saber para subirte a tu próxima moto de forma fácil y segura.</p>
     </section>
 
     <div class="row g-5">
-        <!-- 1. Formas de Pago -->
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center">
@@ -31,7 +29,6 @@
             </div>
         </div>
 
-        <!-- 2. Tipos de Entrega -->
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center">
@@ -49,27 +46,25 @@
             </div>
         </div>
 
-        <!-- 3. Formas de Envío -->
         <div class="col-md-4">
-    <div class="card h-100 border-0 shadow-sm">
-        <div class="card-body text-center">
-            <div class="display-4 text-primary mb-3">
-                <i class="bi bi-truck"></i>
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="display-4 text-primary mb-3">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <h3 class="fw-bold">Opciones de Envío</h3>
+                    <p class="text-muted small mb-4">Llegamos a todo el país con logística propia y asociada.</p>
+                    <ul class="list-unstyled text-start">
+                        <li class="mb-2"><strong>Envío Normal:</strong> Entrega de 5 a 7 días hábiles. Ideal para quienes no tienen prisa y buscan el costo más bajo.</li>
+                        <li class="mb-2"><strong>Envío Express:</strong> Entrega prioritaria en 24/48hs (disponible para zonas seleccionadas y CABA/GBA).</li>
+                        <li class="mb-2"><strong>Envío Pro-Box (Larga Distancia):</strong> La moto viaja dentro de una jaula de madera (huacal) sellada, protegida de cualquier golpe o clima.</li>
+                        <li><i class="bi bi-info-circle text-primary"></i> <small class="text-muted">Todos los envíos incluyen seguro por el valor total de la unidad.</small></li>
+                    </ul>
+                </div>
             </div>
-            <h3 class="fw-bold">Opciones de Envío</h3>
-            <p class="text-muted small mb-4">Llegamos a todo el país con logística propia y asociada.</p>
-            <ul class="list-unstyled text-start">
-                <li class="mb-2"><strong>Envío Normal:</strong> Entrega de 5 a 7 días hábiles. Ideal para quienes no tienen prisa y buscan el costo más bajo.</li>
-                <li class="mb-2"><strong>Envío Express:</strong> Entrega prioritaria en 24/48hs (disponible para zonas seleccionadas y CABA/GBA).</li>
-                <li class="mb-2"><strong>Envío Pro-Box (Larga Distancia):</strong> La moto viaja dentro de una jaula de madera (huacal) sellada, protegida de cualquier golpe o clima.</li>
-                <li><i class="bi bi-info-circle text-primary"></i> <small class="text-muted">Todos los envíos incluyen seguro por el valor total de la unidad.</small></li>
-            </ul>
         </div>
     </div>
-</div>
-    </div>
 
-    <!-- Sección de Información Útil-->
     <section class="mt-5 p-4 bg-light rounded-4">
         <h2 class="text-center fw-bold mb-4">Información Útil para el Comprador</h2>
         <div class="row">
@@ -98,6 +93,4 @@
         <p class="mt-3 text-muted">¿Tenés dudas específicas? <a href="/Contactos" class="text-decoration-none">Contactate con un asesor</a></p>
     </div>
 </main>
-
-    @endsection
-</html>
+@endsection

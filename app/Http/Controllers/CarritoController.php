@@ -35,11 +35,11 @@ class CarritoController extends Controller
         } else {
             VentaItem::create([
                 'user_id'               => $userId,
-                'venta_id'              => null, // Queda nulo hasta que pase por el VentaController
+                'venta_id'              => null, 
                 'moto_id'               => $productoId,
-                'moto_modelo_historico' => $producto->nombre, // ➔ TEXTO (ej: Dominar 250)
-                'cantidad'              => $cantidad,         // ➔ NÚMERO DE UNIDADES (ej: 1, 2)
-                'precio_unitario'       => $producto->precio, // ➔ DINERO EN PESOS (ej: 7150000.00)
+                'moto_modelo_historico' => $producto->nombre, 
+                'cantidad'              => $cantidad,         
+                'precio_unitario'       => $producto->precio, 
             ]);
 
         }
@@ -84,7 +84,6 @@ class CarritoController extends Controller
 
         $userId = auth()->id();
 
-        // Buscamos el ítem activo en el carrito de este usuario
         $item = VentaItem::where('user_id', $userId)
                         ->whereNull('venta_id')
                         ->where('moto_id', $request->producto_id)
@@ -92,22 +91,44 @@ class CarritoController extends Controller
                         ->first();
 
         if (!$item) {
+            if ($request->ajax()) {
+                return response()->json(['error' => 'El producto no está en tu carrito.'], 404);
+            }
             return redirect()->back()->with('error', 'El producto no está en tu carrito.');
         }
 
+        $removido = false;
+
         if ($request->accion === 'sumar') {
-            // Control de seguridad: No permitir sumar más de lo que hay en stock físico
             if ($item->moto && $item->cantidad >= $item->moto->stock) {
-                return redirect()->back()->with('error', "No podés agregar más. Stock máximo alcanzado ({$item->moto->stock} uds).");
+                if ($request->ajax()) {
+                    return response()->json(['error' => "Stock máximo alcanzado ({$item->moto->stock} uds)."], 422);
+                }
+                return redirect()->back()->with('error', "No podés agregar más. Stock máximo alcanzado.");
             }
             $item->increment('cantidad', 1);
         } else {
-            // Si tiene 1 sola unidad y le da a restar, lo eliminamos de forma limpia
             if ($item->cantidad <= 1) {
                 $item->delete();
-                return redirect()->back()->with('success', 'Producto removido del carrito.');
+                $removido = true;
+            } else {
+                $item->decrement('cantidad', 1);
             }
-            $item->decrement('cantidad', 1);
+        }
+
+        if ($request->ajax()) {
+            $todosLosItems = VentaItem::where('user_id', $userId)->whereNull('venta_id')->get();
+            $nuevoTotalCarrito = $todosLosItems->sum(fn($i) => $i->precio_unitario * $i->cantidad);
+            $nuevoConteoCarrito = $todosLosItems->sum('cantidad');
+
+            return response()->json([
+                'success'        => true,
+                'cantidad'       => $removido ? 0 : $item->fresh()->cantidad,
+                'subtotal'       => $removido ? 0 : ($item->fresh()->precio_unitario * $item->fresh()->cantidad),
+                'totalCarrito'   => $nuevoTotalCarrito,
+                'conteoCarrito'  => $nuevoConteoCarrito,
+                'removido'       => $removido
+            ]);
         }
 
         return redirect()->back()->with('success', 'Cantidad actualizada.');

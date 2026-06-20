@@ -36,20 +36,18 @@
                 <tbody>
                     @foreach($usuarios as $user)
                         <tr>
-                            <td>
-                                <div class="fw-bold text-dark">{{ $user->name }}</div>
-                                <small class="text-secondary font-monospace">ID de Registro: #{{ $user->id }}</small>
+                            <td style="max-width: 180px;">
+                                <div class="fw-bold text-dark text-truncate" title="{{ $user->name }}">{{ $user->name }}</div>
+                                <small class="text-secondary font-monospace d-block">ID de Registro: #{{ $user->id }}</small>
                             </td>
                             <td>
                                 <a href="mailto:{{ $user->email }}" class="text-decoration-none">{{ $user->email }}</a>
                             </td>
                             <td class="text-center">
-                                <!-- Estilo visual del Rol alineado a tu header -->
                                 <span class="badge px-3 py-2 text-uppercase" style="background-color: {{ $user->role === 'admin' ? '#9101ff' : '#6c757d' }}; color: white;">
                                     {{ $user->role }}
                                 </span>
                             </td>
-                            <!-- Formulario de Cambio de Rol Dinámico -->
                             <td>
                                 <form action="{{ route('admin.usuarios.rol', $user->id) }}" method="POST" class="d-flex gap-2 justify-content-center align-items-center m-0">
                                     @csrf

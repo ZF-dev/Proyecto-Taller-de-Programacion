@@ -29,7 +29,11 @@
                                 {{ \Carbon\Carbon::parse($log->created_at)->format('d/m/Y H:i:s') }}
                             </td>
                             <td>
-                                <span class="badge bg-light text-dark border p-2 w-100 text-start">👤 {{ $log->user->name }}</span>
+                                <div style="max-width: 160px;">
+                                    <span class="badge bg-light text-dark border p-2 w-100 text-start text-truncate d-block" title="{{ $log->user->name }}">
+                                        👤 {{ $log->user->name }}
+                                    </span>
+                                </div>
                             </td>
                             
                             <!-- Renderizado dinámico de colores de Bootstrap según la criticidad de la acción -->

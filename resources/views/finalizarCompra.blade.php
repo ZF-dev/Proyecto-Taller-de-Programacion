@@ -6,14 +6,12 @@
 <div class="container mt-5 mb-5">
     <h1 class="mb-4">Finalizar Compra</h1>
 
-    <!-- 🟢 Mensaje de Éxito Comercial -->
     @if(session('success'))
         <div class="alert alert-success border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
             🎉 <strong>¡Éxito!</strong> {{ session('success') }}
         </div>
     @endif
 
-    <!-- 🔴 Mensaje de Error de Operación o de Stock -->
     @if(session('error'))
         <div class="alert alert-danger border-0 shadow-sm px-4 py-3 mb-4" style="border-radius: 8px;">
             ⚠️ <strong>Error en Operación:</strong> {{ session('error') }}
@@ -30,7 +28,6 @@
     @endif
 
 
-    <!-- UNIFICADO: Un solo formulario envuelve todo para que viajen tanto el envío como el pago -->
     <form action="{{ route('finalizarCompra.procesar') }}" method="POST">
         @csrf
         
@@ -62,12 +59,10 @@
                 </div>
             </div>
 
-            <!-- Sección 2: Datos de Pago -->
             <div class="col-md-6">
                 <div class="p-4 bg-white shadow-sm rounded border">
                     <h3 class="mb-3">Datos de Pago</h3>
 
-                    <!-- Datos obligatorios comunes (Facturación) -->
                     <div class="mb-3">
                         <label for="titular_pago" class="form-label">Nombre del Titular / Pagador</label>
                         <input type="text" class="form-control" id="titular_pago" name="titular_pago" placeholder="Nombre completo de quien paga" required>
@@ -78,7 +73,6 @@
                         <input type="number" class="form-control" id="dni_pagador" name="dni_pagador" placeholder="Número de documento sin puntos" required>
                     </div>
 
-                    <!-- Selector de tipo de pago -->
                     <label class="form-label d-block fw-bold mt-4">Seleccioná cómo querés pagar:</label>
                     <div class="mb-4 p-2 bg-light rounded d-flex gap-4">
                         <div class="form-check">
@@ -91,7 +85,6 @@
                         </div>
                     </div>
 
-                    <!-- 💳 BLOQUE TARJETA (Visible por defecto) -->
                     <div id="bloqueTarjeta" class="p-3 bg-light rounded mb-4">
                         <div class="mb-3">
                             <label for="numeroTarjeta" class="form-label">Número de Tarjeta</label>

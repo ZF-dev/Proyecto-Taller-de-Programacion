@@ -16,7 +16,6 @@ class VentaController extends Controller
     {
         $userId = auth()->id();
 
-        // 1. Validación estricta en una sola pasada
         $request->validate([
             'metodo_pago'  => ['required', Rule::in(['tarjeta', 'transferencia', 'efectivo'])],
             'titular_pago' => ['required', 'string', 'max:255'],
@@ -26,7 +25,6 @@ class VentaController extends Controller
         ]);
 
         try {
-            // 2. Traemos los ítems del carrito activo de este usuario
             $itemsCarrito = VentaItem::where('user_id', $userId)
                 ->whereNull('venta_id')
                 ->with(['moto' => fn($q) => $q->select('id', 'nombre', 'stock')])
@@ -41,22 +39,18 @@ class VentaController extends Controller
             $descuentosStock = [];
 
             foreach ($itemsCarrito as $item) {
-                // CONTROL CRÍTICO DE STOCK: Evita sobreventas comerciales
                 if (!$item->moto || $item->moto->stock < $item->cantidad) {
                     return redirect()->back()->with('error', "Operación cancelada. Stock insuficiente en el salón para la unidad: " . ($item->moto->nombre ?? 'Moto Seleccionada'));
                 }
 
-                // 🔒 IMPORTANTE: Forzamos el cálculo basado en el precio_unitario real guardado en tu VentaItem
                 $totalVenta += ($item->precio_unitario * $item->cantidad);
                 
                 $idsItemsAActualizar[] = $item->id;
                 $descuentosStock[$item->moto_id] = $item->cantidad;
             }
 
-            // 3. Transacción SQL Segura y Atómica (Previene bloqueos de tablas y condiciones de carrera)
             DB::transaction(function () use ($userId, $totalVenta, $request, $idsItemsAActualizar, $descuentosStock) {
                 
-                // Creamos el ticket general en la tabla 'ventas'
                 $venta = Venta::create([
                     'user_id'                  => $userId,
                     'total'                    => $totalVenta,
@@ -67,14 +61,15 @@ class VentaController extends Controller
                     'tarjeta_ultimos_cuatro'   => $request->metodo_pago === 'tarjeta' ? substr($request->numeroTarjeta, -4) : null,
                 ]);
 
-                // ⚡ Pasamos las filas de estado "carrito" a estado "comprado" asignando el venta_id
                 VentaItem::whereIn('id', $idsItemsAActualizar)->update([
                     'venta_id' => $venta->id
                 ]);
 
-                // ⚡ Descuento de stock directo en el motor de base de datos SQL (Altísima velocidad)
                 foreach ($descuentosStock as $motoId => $cantidad) {
-                    Moto::where('id', $motoId)->decrement('stock', $cantidad);
+                    $moto = Moto::findOrFail($motoId);
+                    
+                    $moto->stock -= $cantidad;
+                    $moto->save(); 
                 }
             });
 

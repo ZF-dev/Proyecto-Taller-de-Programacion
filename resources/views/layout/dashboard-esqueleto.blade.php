@@ -67,10 +67,13 @@
                 </span>
             </div>
 
-            <div class="d-flex align-items-center gap-3 gap-md-4 ms-auto ms-md-0">
-                <span class="text-white-50 small d-none d-md-inline">Sesión activa: <strong class="text-white">{{ auth()->user()->name }}</strong></span>
+            <div class="d-flex align-items-center gap-3 gap-md-4 ms-auto ms-md-0" style="max-width: 70%; min-width: 0;">
+    
+                <span class="text-white-50 small d-none d-md-inline text-truncate" style="max-width: 200px;" title="{{ auth()->user()->name }}">
+                    Sesión activa: <strong class="text-white">{{ auth()->user()->name }}</strong>
+                </span>
                 
-                <a href="/" class="btn btn-sm btn-danger d-flex align-items-center gap-2 px-3 shadow-sm border-0" style="background-color: #dc3545; transition: 0.2s;">
+                <a href="/" class="btn btn-sm btn-danger d-flex align-items-center gap-2 px-3 shadow-sm border-0 flex-shrink-0" style="background-color: #dc3545; transition: 0.2s;">
                     <span class="d-none d-sm-inline">Volver al Inicio</span> 
                     <strong style="font-size: 1.1rem; line-height: 1;">➔</strong>
                 </a>
