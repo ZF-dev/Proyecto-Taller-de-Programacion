@@ -1,0 +1,265 @@
+================================================================================
+ESPECIFICACIÓN DE REQUISITOS DE SOFTWARE (ERS)
+Proyecto: OnlyMotos - Sistema Web de Venta y Administración de Motos
+================================================================================
+
+Revisión: 12.0
+Fecha: 24/06/2026
+Autor: Zini Federico Y Meana Joaquin
+Estatus: Completo / Listo para Entrega
+
+--------------------------------------------------------------------------------
+1. INTRODUCCIÓN
+--------------------------------------------------------------------------------
+
+1.1 Propósito
+El propósito de este documento es definir de manera exhaustiva y detallada los 
+requisitos funcionales, no funcionales y de interfaz para el sistema web 
+"OnlyMotos", un e-commerce especializado en la comercialización y administración 
+de motocicletas. Este documento sirve como base técnica y contrato de alcance 
+para el equipo de desarrollo, los docentes evaluadores de la cátedra Taller de 
+Programación I, el cliente y los futuros administradores del sistema.
+
+1.2 Alcance
+El sistema OnlyMotos es una aplicación web robusta y responsiva desarrollada bajo 
+el framework Laravel 13 y lenguaje PHP 8.3, utilizando MySQL como sistema de 
+gestión de bases de datos. 
+El alcance contempla la transición completa desde un diseño estático inicial hacia 
+un sistema dinámico automatizado que incluye:
+- Un catálogo público e interactivo de motocicletas.
+- Un flujo completo de carrito de compras y procesamiento de ventas.
+- Módulos avanzados de administración de usuarios, roles, permisos y control de inventario.
+- Registro automatizado de auditorías y logs de transacciones del sistema.
+El sistema está diseñado de forma adaptativa para visualizarse de manera óptima 
+en múltiples resoluciones de pantalla y navegadores modernos.
+
+1.3 Personal involucrado
+- Nombre: Zini Federico y Meana Joaquin
+  Rol: Diseño, maquetación, programación, pruebas y soporte
+  Categoría profesional: Analistas de Sistemas y Programadores Full-Stack (algun dia jajaja)
+  Responsabilidades: Implementación de la base de datos, lógica de negocio en Laravel,
+                     diseño de interfaz CSS responsive y validaciones de seguridad.
+  Aprobación: Aprobado para fase de despliegue y evaluación técnica.
+
+1.4 Definiciones, acrónimos y abreviaturas
+- CRUD: Create, Read, Update, Delete (Altas, Bajas, Modificaciones y Consultas).
+- MVC: Modelo-Vista-Controlador (Patrón de arquitectura de software utilizado por Laravel).
+- ORM / Eloquent: Object-Relational Mapping (Mapeador objeto-relacional integrado en Laravel).
+- Bajas Lógicas: Mecanismo de borrado donde los registros no se eliminan físicamente de 
+  la base de datos, sino que se marcan como inactivos (ej. utilizando SoftDeletes de Eloquent).
+- HTTPS: Hypertext Transfer Protocol Secure (Protocolo seguro de transferencia de hipertexto).
+
+1.5 Referencias
+- Ref: [1] Documentación oficial de Laravel 13 (https://laravel.com/docs) - Año: 2026.
+- Ref: [2] Consignas del Primer Proyecto - Taller de Programación I (Año 2026).
+- Ref: [3] Consignas Segundo Proyecto - Talle dee Programacion I (2026).
+
+1.6 Resumen del documento
+Este documento está estructurado de la siguiente manera: La Sección 1 provee la 
+introducción y el contexto general; la Sección 2 ofrece una descripción del 
+producto desde la perspectiva del negocio, sus usuarios y restricciones; la 
+Sección 3 detalla las interfaces del sistema y desglosa exhaustivamente los 
+requisitos funcionales organizados por perfiles de usuario, así como los 
+requisitos no funcionales; finalmente, los Apéndices contienen la documentación 
+adicional sobre la arquitectura y vistas del sitio.
+
+--------------------------------------------------------------------------------
+2. DESCRIPCIÓN GENERAL
+--------------------------------------------------------------------------------
+
+2.1 Perspectiva del producto
+OnlyMotos es un producto de software independiente y autónomo concebido como una 
+solución integral de comercio electrónico. El sistema encapsula todas las 
+operaciones comerciales en el servidor y ofrece una interfaz web unificada. Se 
+conecta de forma Simulada con pasarelas de pago externas y servidores SMTP para la 
+notificación automática por correo electrónico a los involucrados.
+
+2.2 Funcionalidad del producto (Visión macro)
+El sistema proporciona las siguientes capacidades clave:
+1. Navegación libre por el portal informativo institucional y comercial.
+2. Despliegue interactivo y dinámico de motocicletas disponibles para la venta.
+3. Simulación y confirmación de compras mediante carrito de compras automatizado.
+4. Registro seguro de usuarios con almacenamiento cifrado de credenciales.
+5. Panel administrativo para el control total del catálogo de productos y auditoría.
+
+2.3 Características de los usuarios
+El sistema define e implementa tres perfiles diferenciados de usuario:
+
+A. Usuario Visitante (No autenticado):
+   - Formación: Básica en navegación por internet.
+   - Actividades: Acceder a las páginas informativas de la empresa, consultar el 
+     catálogo dinámico de motos, interactuar con el formulario de contacto/consultas, 
+     y proceder al registro de clientes o inicio de sesión.
+   - Restricción: No puede efectuar compras ni guardar artículos en un carrito persistente.
+
+B. Usuario Cliente Registrado:
+   - Formación: Usuario habitual de plataformas e-commerce.
+   - Actividades: Modificar datos de perfil (Opcional), gestionar activamente el 
+     carrito de compras (agregar, eliminar, vaciar), procesar y confirmar pedidos, 
+     visualizar el historial de compras y descargar la factura del sistema (Opcional).
+
+C. Usuario Administrador:
+   - Formación: Técnica / Operativa en sistemas de gestión.
+   - Actividades: Control total del inventario de motocicletas (CRUD con bajas lógicas), 
+     monitoreo y visualización centralizada de productos, usuarios registrados, 
+     consultas recibidas, datos de contacto de clientes y transacciones/ventas realizadas.
+
+2.4 Restricciones del proyecto
+- Desarrollo imperativo bajo el Framework Laravel 13 y lenguaje PHP 8.3.
+- Persistencia de datos obligatoria en un motor de bases de datos MySQL.
+- Interfaz web 100% responsive, liviana, sencilla y de carga rápida.
+- Compatibilidad comprobada y garantizada en al menos dos navegadores modernos (ej. Chrome, Firefox).
+- Implementación mandatoria de bajas lógicas para resguardar la integridad referencial.
+- Validación estricta en el servidor y cliente de todos los formularios de entrada de datos.
+
+2.5 Suposiciones y dependencias
+- El servidor de hosting debe contar con soporte completo para PHP 8.3, extensiones de Laravel 13 y MySQL.
+- Disponibilidad constante de conexión a internet por parte de los clientes y administradores.
+- Correcto funcionamiento y disponibilidad de las APIs externas para pasarelas de pago y envío de correos.
+
+2.6 Evolución previsible del sistema
+- Desarrollo futuro de una aplicación móvil nativa (Android/iOS) integrada vía API REST.
+- Ampliación del catálogo comercial para incluir repuestos, accesorios y otros tipos de vehículos.
+- Generación automatizada de reportes estadísticos avanzados, gráficos de ventas mensuales y auditorías exportables.
+
+--------------------------------------------------------------------------------
+3. REQUISITOS ESPECÍFICOS Y ESTRUCTURA DEL SITIO WEB
+--------------------------------------------------------------------------------
+
+3.1 Requisitos de Interfaces Externas
+
+3.1.1 Interfaces de Usuario (Estructura de Páginas Requeridas)
+El diseño respeta una maquetación responsive fluida, tipografías legibles con alto contraste 
+de fondo y una barra de navegación global accesible desde cualquier sección. El sistema 
+está compuesto por las siguientes 9 páginas base articuladas de forma dinámica:
+
+1. Página Principal (Home): Presentación clara e institucional de la empresa "OnlyMotos", 
+   misión general, impacto visual alto, textos concisos y resúmenes atractivos que 
+   introducen las principales líneas de motocicletas y servicios ofrecidos.
+2. Quiénes Somos: Detalle exhaustivo de los objetivos comerciales de la organización, 
+   su trayectoria en el mercado y la presentación formal del Staff y equipo técnico humano.
+3. Comercialización: Información detallada de utilidad para el potencial cliente respecto 
+   a las especificaciones de entrega, zonas y formas de envíos, y pasarelas de pago aceptadas.
+4. Información de Contacto: Publicación obligatoria de los datos legales de la empresa: 
+   Nombre del titular, Razón Social, Domicilio Legal, Teléfonos de atención y un Cuestionario/Formulario 
+   completamente validado para consultas directas.
+5. Términos y Usos: Aviso Legal completo, condiciones de uso de la web, políticas de privacidad, 
+   términos de venta, coberturas de garantías y mecanismos de soporte postventa.
+6. Catálogo de Productos: Vista optimizada donde las motocicletas se renderizan y listan de manera 
+   dinámica desde la base de datos (superando la versión estática inicial).
+7. Formulario de Consultas: Sección dedicada a la recepción de inquietudes, integrada con 
+   validaciones estrictas en cada campo para evitar inyecciones o datos huérfanos.
+8. Formulario de Registro de Clientes: Interfaz con captura validada de datos personales para 
+   el alta segura de nuevos clientes dentro de la plataforma.
+9. Formulario de Login: Interfaz limpia y validada para la autenticación de usuarios clientes y administradores.
+
+3.1.2 Interfaces de Hardware
+- Servidor: CPU multinúcleo con mínimo 2GB de RAM dedicado para el entorno PHP/MySQL.
+- Cliente: Dispositivos móviles, tablets u ordenadores personales con pantallas desde 320px de ancho.
+
+3.1.3 Interfaces de Software
+- Motor de Base de Datos: MySQL 8.0 o superior.
+- Backend: Laravel 13 y PHP 8.3 (utilizando Eloquent ORM).
+- Frontend: HTML5, CSS3, Blade templates de Laravel, JavaScript nativo para interacciones rápidas.
+
+3.1.4 Interfaces de Comunicación
+- Uso exclusivo del protocolo criptográfico HTTPS para garantizar el cifrado de datos en tránsito.
+- Conexión vía API REST segura para transacciones de pasarela de pago externas.
+
+3.2 Requisitos Funcionales por Perfil de Usuario
+
+3.2.1 Módulo del Usuario Visitante
+- RF-VIS-01: El sistema deberá permitir al visitante navegar de forma fluida por todas las 
+  páginas informativas (Principal, Quiénes Somos, Comercialización, Contacto, Términos).
+- RF-VIS-02: El sistema deberá desplegar el Catálogo de Productos de forma dinámica desde la base de datos.
+- RF-VIS-03: El sistema deberá proveer un Formulario de Consultas completamente validado que impida el envío de campos vacíos o formatos incorrectos (ej. correo electrónico mal formado).
+- RF-VIS-04: El sistema deberá bloquear cualquier intento de compra o adición al carrito si el usuario conserva el rol de visitante, obligándolo a redirigirse al Login o Registro.
+- RF-VIS-05: El sistema proveerá los formularios validados de Registro de Clientes e Inicio de Sesión (Login).
+
+3.2.2 Módulo del Usuario Cliente Registrado
+- RF-CLI-01: El sistema permitirá el acceso a la totalidad de las páginas del proyecto y la realización de compras mediante el catálogo interactivo de motos.
+- RF-CLI-02: Gestión del Carrito de Compras (Obligatorio): El sistema deberá permitir al cliente:
+  * Agregar motocicletas seleccionadas al carrito de compras.
+  * Eliminar unidades o ítems específicos del carrito.
+  * Vaciar el carrito por completo mediante una acción simple.
+  * Guardar el estado de la compra actual de forma persistente.
+- RF-CLI-03: Al presionar "Comprar" y confirmarse la transacción de forma exitosa, el sistema deberá vaciar el carrito automáticamente y descontar de inmediato las unidades del stock general.
+- RF-CLI-04: El sistema permitirá la visualización histórica detallada de todas las compras realizadas por el cliente autenticado.
+- RF-CLI-05 (Opcional): El sistema permitirá al cliente acceder a un apartado privado para gestionar, actualizar y salvar sus datos de perfil personal.
+- RF-CLI-06 (Opcional): Tras una confirmación exitosa de pedido, el sistema emitirá de forma automatizada una factura en formato digital/imprimible para el cliente.
+
+3.2.3 Módulo del Usuario Administrador
+- RF-ADM-01: Gestión de Inventario (CRUD Completo): El Administrador tendrá la facultad exclusiva de realizar Altas (crear nuevas motos), Consultas (visualizar detalles), Modificaciones (actualizar precios, fotos, descripciones o stock) y Bajas de productos.
+- RF-ADM-02: Regla de Bajas Lógicas (Mandatorio): Ninguna baja de motocicleta será física. El sistema modificará un atributo de estado o utilizará SoftDeletes de Laravel para ocultar el producto del catálogo público sin borrarlo del histórico de ventas ni destruir la integridad referencial de la base de datos.
+- RF-ADM-03: Visualización Centralizada de Datos: El panel administrativo deberá proveer interfaces dedicadas y organizadas para monitorizar en tiempo real:
+  * Catálogo completo de Productos (activos e inactivos).
+  * Lista y estado de los Usuarios registrados en el sistema.
+  * Bandeja de entrada con las Consultas enviadas a través del formulario validado.
+  * Información y solicitudes de Contacto de clientes.
+  * Registro cronológico e histórico de las Ventas de motos concretadas en la plataforma.
+- RF-ADM-04: Gestión de Roles y Permisos: El administrador podrá asignar o revocar perfiles y privilegios a los usuarios del sistema.
+
+3.3 Requisitos No Funcionales
+
+3.3.1 Rendimiento
+- RN-REN-01: El sistema web deberá ser capaz de soportar una concurrencia mínima de 200 usuarios simultáneos navegando e interactuando en la plataforma sin degradación del servicio.
+- RN-REN-02: El tiempo de procesamiento de transacciones y carga dinámica de páginas críticas debe ser inferior a los 2 segundos por petición.
+
+3.3.2 Seguridad
+- RN-SEG-01: Sanitización y Validación: Validación estricta tanto en el lado del cliente (JS/HTML5) como en el lado del servidor (Request Validation de Laravel) para prevenir vulnerabilidades comunes (SQL Injection, XSS, CSRF).
+- RN-SEG-02: Registro de Logs: Almacenamiento continuo de logs de eventos informáticos y actividades críticas dentro del sistema web.
+
+3.3.3 Fiabilidad y Disponibilidad
+- RN-FIA-01: El tiempo medio entre fallos mecánicos o de software (MTBF) proyectado debe ser superior a las 500 horas de operación continua.
+- RN-DIS-01: El sistema OnlyMotos garantizará una disponibilidad mínima mensual del 99% del tiempo (Uptime), programando ventanas de mantenimiento únicamente en horarios de bajo tráfico.
+
+3.3.4 Mantenibilidad y Portabilidad
+- RN-MAN-01: Estructuración limpia del código fuente  de Laravel, facilitando actualizaciones periódicas del sistema y la generación programada de reportes semanales.
+- RN-POR-01: La aplicación web podrá migrarse íntegramente hacia cualquier servidor Linux/Windows estándar con soporte nativo de PHP 8.3 y MySQL sin necesidad de reescribir la lógica de negocio subyacente.
+
+3.4 Requisitos Legales y Normativos
+- El sistema cumplirá estrictamente con las normativas vigentes aplicables al comercio electrónico en la República Argentina, incluyendo las leyes de protección de datos personales y los derechos de defensa del consumidor.
+
+--------------------------------------------------------------------------------
+4. APÉNDICES: MANUAL DE USUARIO PRELIMINAR
+--------------------------------------------------------------------------------
+
+4.1 Manual para el Usuario Visitante e Interfaz Pública
+1. Acceso General: Al ingresar a la URL principal, el usuario se encuentra con la 
+   Página de Inicio ("Welcome") con la presentación fluida de la marca. Puede navegar 
+   libremente usando la barra superior por las secciones informativas "Quiénes Somos", 
+   "Comercialización" y "Términos y Usos".
+2. Consultas: En la sección "Información de Contacto", el visitante puede rellenar 
+   el cuestionario de consultas. Todos los campos obligatorios poseen marcas visuales. 
+   Al presionar "Enviar", el sistema valida y confirma mediante un banner emergente.
+3. Catálogo Público: En la pestaña "Catálogo", las motos se cargan interactivamente. 
+   Cada ítem exhibe su nombre, marca, precio y disponibilidad. Para comprar, el sistema 
+   indicará que es requerido "Registrarse" o "Iniciar Sesión" mediante un enlace rápido.
+
+4.2 Manual para el Usuario Cliente Registrado (Módulo de Compras)
+1. Autenticación: El cliente ingresa con su correo electrónico y contraseña en la 
+   página de "Login". Al autenticarse, la barra superior reflejará su nombre de perfil.
+2. Uso del Carrito de Compras: 
+   - Agregar: Dentro del Catálogo Dinámico, el usuario dispondrá de un botón 
+     "Agregar al Carrito". Cada clic incrementa la cantidad en el contador global.
+   - Modificar y Vaciar: En la vista del Carrito, el cliente puede eliminar ítems 
+     específicos o vaciar por completo el contenedor por medio del botón "Vaciar".
+   - Confirmar Compra: Al pulsar el botón "Proceder al Pago", el sistema ejecuta la 
+     operación, procesa los datos, emite un aviso de éxito, vacía el carrito automáticamente 
+     y habilita la visualización de la transacción en la pestaña "Mis Compras".
+
+4.3 Manual para el Usuario Administrador (Módulo de Control y Backoffice)
+1. Ingreso al Panel Administrativo: El Administrador accede por la pasarela de login 
+   con credenciales de superusuario, habilitando una barra lateral de control interna.
+2. Operaciones de Catálogo (CRUD de Productos): 
+   - Alta de Motos: Formulario interactivo para rellenar modelo, descripción, precio y stock.
+   - Bajas Lógicas: En el listado general de stock, el botón "Eliminar" aplicará 
+     automáticamente la desactivación lógica del producto (SoftDelete), retirándolo 
+     de las búsquedas de los clientes pero manteniéndolo en reportes históricos.
+3. Gestión y Monitoreo Global: Mediante accesos directos de la barra de control, el 
+   administrador puede hacer clic y desplegar dinámicamente las cuadrículas de datos de:
+   - Usuarios (Clientes registrados).
+   - Consultas (Bandeja de consultas rellenadas por visitantes).
+   - Contactos y Ventas (Historial de cobros concretados y pedidos pendientes de entrega).
+   - Notificaciones de auditoría
+================================================================================
